@@ -1018,7 +1018,7 @@ function DropGravestoneChests(player)
     end
 
     if (grave ~= nil) then
-        player.print("成功地把你的物品扔进了一个箱子！ 快去找他们！")
+        player.print("Successfully dropped your items into a chest! Go get them quick!")
     end
 end
 
@@ -1064,7 +1064,7 @@ function DropGravestoneChestFromCorpse(corpse)
     end
 
     if (grave ~= nil) and (game.players[corpse.character_corpse_player_index] ~= nil)then
-        game.players[corpse.character_corpse_player_index].print("你的尸体被敌人吃掉了！ 他们好心地把你的物品扔进了箱子里！ 快去找他们！")
+        game.players[corpse.character_corpse_player_index].print("Your corpse got eaten by biters! They kindly dropped your items into a chest! Go get them quick!")
     end
 
 end
@@ -1121,9 +1121,9 @@ function AutofillTurret(player, turret)
         -- Inserted ammo successfully
         -- FlyingText("Inserted ammo x" .. ret, turret.position, my_color_red, player.surface)
     elseif (ret == -1) then
-        FlyingText("没子弹了！", turret.position, my_color_red, player.surface)
+        FlyingText("Out of ammo!", turret.position, my_color_red, player.surface)
     elseif (ret == -2) then
-        FlyingText("自动装填错误! - 报告这个错误!", turret.position, my_color_red, player.surface)
+        FlyingText("Autofill ERROR! - Report this bug!", turret.position, my_color_red, player.surface)
     end
 end
 
@@ -1227,7 +1227,8 @@ function CreateMoat(surface, centerPos, chunkArea, tileRadius, moatTile, bridge)
         for j=chunkArea.left_top.y,chunkArea.right_bottom.y,1 do
 
             if (bridge and ((j == centerPos.y-1) or (j == centerPos.y) or (j == centerPos.y+1))) then
-
+                -- This will leave the tiles "as is" on the left and right of the spawn which has the effect of creating
+                -- land connections if the spawn is on or near land.
             else
 
                 -- This ( X^2 + Y^2 ) is used to calculate if something
@@ -1240,13 +1241,6 @@ function CreateMoat(surface, centerPos, chunkArea, tileRadius, moatTile, bridge)
                     table.insert(tiles, {name = moatTile, position ={i,j}})
                 end
             end
-
-            -- Enforce land inside the edges of the circle to make sure it's
-            -- a clean transition
-            -- if ((distVar <= tileRadSqr) and
-            --     (distVar > tileRadSqr-10000)) then
-            --     table.insert(tiles, {name = fillTile, position ={i,j}})
-            -- end
         end
     end
 
@@ -1328,7 +1322,8 @@ function UndecorateOnChunkGenerate(event)
     local surface = event.surface
     local chunkArea = event.area
     RemoveDecorationsArea(surface, chunkArea)
-    RemoveFish(surface, chunkArea)
+    -- If you care to, you can remove all fish with the Undecorator option here:
+    -- RemoveFish(surface, chunkArea)
 end
 
 -- Give player items on respawn
@@ -1355,20 +1350,5 @@ function Autofill(event)
 
     if ((eventEntity.name == "car") or (eventEntity.name == "tank") or (eventEntity.name == "locomotive")) then
         AutoFillVehicle(player, eventEntity)
-    end
-end
-
--- Map loaders to logistics tech for unlocks.
-local loaders_technology_map = {
-    ['logistics'] = 'loader',
-    ['logistics-2'] = 'fast-loader',
-    ['logistics-3'] = 'express-loader'
-}
-
-function EnableLoaders(event)
-    local research = event.research
-    local recipe = loaders_technology_map[research.name]
-    if recipe then
-        research.force.recipes[recipe].enabled = true
     end
 end

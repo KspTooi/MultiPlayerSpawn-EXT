@@ -18,7 +18,7 @@ function GameOptionsGuiClick(event)
         if (pIndex ~= 0) then
             local banPlayer = event.element.parent.ban_players_dropdown.get_item(pIndex)
             if (game.players[banPlayer]) then
-                game.ban_player(banPlayer, "被禁止进入管理面板.")
+                game.ban_player(banPlayer, "Banned from admin panel.")
                 log("Banning " .. banPlayer)
             end
         end
@@ -42,7 +42,7 @@ end
 function CreateGameOptionsTab(tab_container, player)
 
     if global.oarc_announcements ~= nil then
-        AddLabel(tab_container, "announcement_info_label", "服务器公告:", my_label_header_style)
+        AddLabel(tab_container, "announcement_info_label", "Server announcements:", my_label_header_style)
         AddLabel(tab_container, "announcement_info_txt", global.oarc_announcements, my_longer_label_style)
         AddSpacerLine(tab_container)
     end
@@ -60,77 +60,77 @@ function CreateGameOptionsTab(tab_container, player)
     local enemy_expansion_txt = "disabled"
     if game.map_settings.enemy_expansion.enabled then enemy_expansion_txt = "enabled" end
 
-    local enemy_text="服务器运行时间: " .. formattime_hours_mins(game.tick) .. "\n" ..
-    "当前的演变: " .. string.format("%.4f", game.forces["enemy"].evolution_factor) .. "\n" ..
-    "敌方进化时间因子/污染因子/破坏因子: " .. game.map_settings.enemy_evolution.time_factor .. "/" ..
+    local enemy_text="Server Run Time: " .. formattime_hours_mins(game.tick) .. "\n" ..
+    "Current Evolution: " .. string.format("%.4f", game.forces["enemy"].evolution_factor) .. "\n" ..
+    "Enemy evolution time/pollution/destroy factors: " .. game.map_settings.enemy_evolution.time_factor .. "/" ..
     game.map_settings.enemy_evolution.pollution_factor .. "/" ..
     game.map_settings.enemy_evolution.destroy_factor .. "\n" ..
-    "敌方扩张 " .. enemy_expansion_txt
+    "Enemy expansion is " .. enemy_expansion_txt
 
     AddLabel(tab_container, "enemy_info", enemy_text, my_longer_label_style)
     AddSpacerLine(tab_container)
 
     -- Soft Mods:
-    local soft_mods_string = "Oarc核心"
+    local soft_mods_string = "Oarc Core"
     if (global.ocfg.enable_undecorator) then
-        soft_mods_string = soft_mods_string .. ", Undecorator（删除装饰物以减小保存文件的大小）"
+        soft_mods_string = soft_mods_string .. ", Undecorator"
     end
     if (global.ocfg.enable_tags) then
-        soft_mods_string = soft_mods_string .. ", 标签"
+        soft_mods_string = soft_mods_string .. ", Tags"
     end
     if (global.ocfg.enable_long_reach) then
-        soft_mods_string = soft_mods_string .. ", Long Reach（长距离）"
+        soft_mods_string = soft_mods_string .. ", Long Reach"
     end
     if (global.ocfg.enable_autofill) then
-        soft_mods_string = soft_mods_string .. ", 自动填充"
+        soft_mods_string = soft_mods_string .. ", Auto Fill"
     end
     if (global.ocfg.enable_player_list) then
-        soft_mods_string = soft_mods_string .. ", 玩家列表"
+        soft_mods_string = soft_mods_string .. ", Player List"
     end
     if (global.ocfg.enable_regrowth) then
-        soft_mods_string = soft_mods_string .. ", Regrowth（定期清理未使用的块。帮助缩小地图尺寸）"
+        soft_mods_string = soft_mods_string .. ", Regrowth"
     end
     if (global.ocfg.enable_chest_sharing) then
-        soft_mods_string = soft_mods_string .. ", 物品和能源共享"
+        soft_mods_string = soft_mods_string .. ", Item & Energy Sharing"
     end
     if (global.ocfg.enable_magic_factories) then
-        soft_mods_string = soft_mods_string .. ", 特殊地图区块"
+        soft_mods_string = soft_mods_string .. ", Special Map Chunks"
     end
     if (global.ocfg.enable_offline_protect) then
-        soft_mods_string = soft_mods_string .. ", 离线攻击抑制器（不保证100％）"
+        soft_mods_string = soft_mods_string .. ", Offline Attack Inhibitor"
     end
 
-    local game_info_str = "软模组: " .. soft_mods_string
+    local game_info_str = "Soft Mods: " .. soft_mods_string
 
     -- Spawn options:
     if (global.ocfg.enable_separate_teams) then
-        game_info_str = game_info_str.."\n".."你被允许出生在你自己的团队中（有自己的研究树）。所有的队伍都很友好！"
+        game_info_str = game_info_str.."\n".."You are allowed to spawn on your own team (have your own research tree). All teams are friendly!"
     end
     if (global.ocfg.enable_vanilla_spawns) then
-        game_info_str = game_info_str.."\n".."在默认起始区域中出生。"
+        game_info_str = game_info_str.."\n".."You are spawned in a default style starting area."
     else
-        game_info_str = game_info_str.."\n".."你出生在默认起始资源的区域。"
+        game_info_str = game_info_str.."\n".."You are spawned with a fix set of starting resources."
         if (global.ocfg.enable_buddy_spawn) then
-            game_info_str = game_info_str.."\n".."你可以选择和朋友一起出生在相同的地方，如果选择一致。"
+            game_info_str = game_info_str.."\n".."You can chose to spawn alongside a buddy if you spawn together at the same time."
         end
     end
     if (global.ocfg.enable_shared_spawns) then
-        game_info_str = game_info_str.."\n".."队长可以选择共享自己的重生点，并允许其他玩家加入。"
+        game_info_str = game_info_str.."\n".."Spawn hosts may choose to share their spawn and allow other players to join them."
     end
     if (global.ocfg.enable_separate_teams and global.ocfg.enable_shared_team_vision) then
-        game_info_str = game_info_str.."\n".."每个人 (所有团队) 有共同的目标。"
+        game_info_str = game_info_str.."\n".."Everyone (all teams) have shared vision."
     end
     if (global.ocfg.frontier_rocket_silo) then
-        game_info_str = game_info_str.."\n".."火箭发射井只能在地图上的某些区域放置！"
+        game_info_str = game_info_str.."\n".."Silos are only placeable in certain areas on the map!"
     end
     if (global.ocfg.enable_regrowth) then
-        game_info_str = game_info_str.."\n".."地图上的旧区块会慢慢被删除随着时间的推移 (区块没有任何玩家的建筑)。"
+        game_info_str = game_info_str.."\n".."Old parts of the map will slowly be deleted over time (chunks without any player buildings)."
     end
     if (global.ocfg.enable_power_armor_start or global.ocfg.enable_modular_armor_start) then
-        game_info_str = game_info_str.."\n".."启用快速启动。"
+        game_info_str = game_info_str.."\n".."Quicker start enabled."
     end
     if (global.ocfg.lock_goodies_rocket_launch) then
-        game_info_str = game_info_str.."\n".."一些科技和物品在你发射火箭之前是锁定的！（关闭）"
+        game_info_str = game_info_str.."\n".."Some technologies and recipes are locked until you launch a rocket!"
     end
 
 
@@ -138,7 +138,7 @@ function CreateGameOptionsTab(tab_container, player)
     AddLabel(tab_container, "game_info_label", game_info_str, my_longer_label_style)
 
     if (global.ocfg.enable_abandoned_base_removal) then
-        AddLabel(tab_container, "leave_warning_msg", "如果你离开在  " .. global.ocfg.minimum_online_time .. " 分钟内从加入起算, 你的基地和角色将被移除。.", my_longer_label_style)
+        AddLabel(tab_container, "leave_warning_msg", "If you leave within " .. global.ocfg.minimum_online_time .. " minutes of joining, your base and character will be deleted.", my_longer_label_style)
         tab_container.leave_warning_msg.style.font_color=my_color_red
     end
 
@@ -154,7 +154,7 @@ function CreateGameOptionsTab(tab_container, player)
         tab_container.add{name = "ban_players_dropdown",
                         type = "drop-down",
                         items = player_list}
-        tab_container.add{name="ban_player", type="button", caption="封禁玩家"}
-        tab_container.add{name="restart_player", type="button", caption="重置玩家"}
+        tab_container.add{name="ban_player", type="button", caption="Ban Player"}
+        tab_container.add{name="restart_player", type="button", caption="Restart Player"}
     end
 end

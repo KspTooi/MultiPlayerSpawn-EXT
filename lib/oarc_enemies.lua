@@ -32,9 +32,9 @@ function OarcModifyEnemyGroup(group)
     if ((group.command.type == defines.command.attack) or 
         (group.command.type == defines.command.attack_area) or 
         (group.command.type == defines.command.build_base)) then
-        -- log("OarcModifyEnemyGroup MODIFYING command TYPE=" .. group.command.type)
+        log("OarcModifyEnemyGroup MODIFYING command TYPE=" .. group.command.type)
     else
-        -- log("OarcModifyEnemyGroup ignoring command TYPE=" .. group.command.type)
+        log("OarcModifyEnemyGroup ignoring command TYPE=" .. group.command.type)
         return
     end
 
@@ -158,6 +158,6 @@ function OarcModifyEnemyGroup(group)
         for _,member in pairs(group.members) do
             member.destroy()
         end
-        -- log("OarcModifyEnemyGroup REMOVED enemy group since nobody was online?")
+        log("OarcModifyEnemyGroup REMOVED enemy group since nobody was online?")
     end
 end

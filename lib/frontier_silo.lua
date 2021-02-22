@@ -69,7 +69,7 @@ function SetRandomSiloPosition(num_silos)
 
         table.insert(global.siloPosition, {x=math.floor(tx), y=math.floor(ty)})
 
-        log("火箭发射井位置: " .. tx .. ", " .. ty .. ", " .. angle)
+        log("Silo position: " .. tx .. ", " .. ty .. ", " .. angle)
     end
 end
 
@@ -174,7 +174,7 @@ function BuildSiloAttempt(event)
     for k,v in pairs(global.siloPosition) do
         if (getDistance(epos, v) <= 1) then
             if (event.created_entity.name ~= "entity-ghost") then
-                SendBroadcastMsg("火箭发射井已经建成!")
+                SendBroadcastMsg("Rocket silo has been built!")
             end
             return -- THIS MEANS WE SUCCESFULLY BUILT THE SILO (ghost or actual building.)
         end
@@ -189,7 +189,7 @@ function BuildSiloAttempt(event)
             event.created_entity.last_user.mine_entity(event.created_entity, true)
         end
     else
-        log("错误！火箭发射井没有有效的最后用户？！？！")
+        log("ERROR! Rocket-silo had no valid last user?!?!")
     end
 end
 

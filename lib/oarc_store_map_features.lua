@@ -8,11 +8,10 @@ local mod_gui = require("mod-gui")
 
 OARC_STORE_MAP_TEXT = 
 {
-    special_chests = "用于共享或监控物品和能量的特殊建筑。这将把16格内最近的木箱(离你)转换成你选择的特殊建筑。确保留下足够的空间! 组合器和蓄能器可以占据周围的几块格子。",
-    special_chunks = "可以在地图上的特殊空块上建造的地图功能。你必须站在一个空的特殊块内才能建造这些。每个玩家只能建造一种类型的东西。 [color=red]这些功能是永久性的，不能被移除![/color]",
-    special_buttons = "特殊的按钮，如传送回家和挖水。",
-    seller_buttons = "用于卖出物品获取现金",
-    reset_buttons = "重置你的玩家和基地。 [color=red]谨慎选择！ 无法撤消。[/color] 如果您没有基地和自己的部队，则可能无法使用某些选项。"
+    special_chests = "Special buildings for sharing or monitoring items and energy. This will convert the closest wooden chest (to you) within 16 tiles into a special building of your choice. Make sure to leave enough space! The combinators and accumulators can take up several tiles around them.",
+    special_chunks = "Map features that can be built on the special empty chunks found on the map. You must be standing inside an empty special chunk to be able to build these. Each player can only build one of each type. [color=red]THESE FEATURES ARE PERMANENT AND CAN NOT BE REMOVED![/color]",
+    special_buttons = "Special buttons like teleporting home and placing waterfill.",
+    reset_buttons = "Reset your player and base. [color=red]Choose carefully! Can't be undone.[/color] If you don't own a base and your own force, some options may not be available to you."
 }
 
 -- N = number already purchased
@@ -22,72 +21,72 @@ OARC_STORE_MAP_FEATURES =
     special_chests = {
         ["logistic-chest-storage"] = {
             initial_cost = 200,
---            additional_cost = 20,
---            multiplier_cost = 2,
---            max_cost = 200,
+            additional_cost = 20,
+            multiplier_cost = 2,
+            max_cost = 2000,
             -- limit = 100,
-            text="输入箱子，用于存放共享物品。"},
+            text="Input chest for storing shared items."},
         ["logistic-chest-requester"] = {
             initial_cost = 200,
---            additional_cost = 50,
---            multiplier_cost = 2,
---            max_cost = 4000,
+            additional_cost = 50,
+            multiplier_cost = 2,
+            max_cost = 4000,
             -- limit = 100,
-            text="输出箱子，用于请求共享物品。"},
+            text="Output chest for requesting shared items."},
         ["constant-combinator"] = {
             initial_cost = 50, 
-            text="组合器设置，用于监视共享项目。"},
+            text="Combinator setup to monitor shared items."},
         ["accumulator"] = {
             initial_cost = 200,
---            additional_cost = 50,
---            multiplier_cost = 2,
---            max_cost = 2000,
+            additional_cost = 50,
+            multiplier_cost = 2,
+            max_cost = 2000,
             -- limit = 100,
-            text="共享能源系统的输入。 [color=red]只有在充电到50%时才开始共享.[/color]"},
+            text="INPUT for shared energy system. [color=red]Only starts to share once it is charged to 50%.[/color]"},
         ["electric-energy-interface"] = {
             initial_cost = 200,
---            additional_cost = 100,
---            multiplier_cost = 2,
---            max_cost = 4000,
+            additional_cost = 100,
+            multiplier_cost = 2,
+            max_cost = 4000,
             -- limit = 100,
-            text="共享能源系统的输出。 [color=red]不会给其他特殊电接口供电! 特别是你不能用它来驱动特殊的块![/color]"},
+            text="OUTPUT for shared energy system. [color=red]Will NOT power other special eletric interfaces! You especially can't power special chunks with this![/color]"},
         ["deconstruction-planner"] = {
             initial_cost = 0,
-            text="移除范围内最近的特殊建筑。 不退款！"},
+            text="Removes the closest special building within range. NO REFUNDS!"},
     },
 
     special_chunks = {
         ["electric-furnace"] = {
             initial_cost = 1000,
---            additional_cost = 1000,
---            multiplier_cost = 2,
+            additional_cost = 1000,
+            multiplier_cost = 2,
             -- limit = 3,
-            text="在这里建一个特殊的炉块，包含4个电炉，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
+            text="Build a special furnace chunk here. Contains 4 furnaces that run at very high speeds. [color=red]Requires energy from the shared storage. Modules have no effect![/color]"},
         ["oil-refinery"] = {
             initial_cost = 1000,
---            additional_cost = 1000,
---            multiplier_cost = 2,
+            additional_cost = 1000,
+            multiplier_cost = 2,
             -- limit = 3,
-            text="在这里建造一个特殊的炼油厂。 包含2个炼油厂和一些化工厂，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
+            text="Build a special oil refinery chunk here. Contains 2 refineries and some chemical plants that run at very high speeds. [color=red]Requires energy from the shared storage. Modules have no effect![/color]"},
         ["assembling-machine-3"] = {
             initial_cost = 1000,
---            additional_cost = 1000,
---            multiplier_cost = 2,
+            additional_cost = 1000,
+            multiplier_cost = 2,
             -- limit = 3,
-            text="在这里建造一个特殊的组装机块。包含6台组装机，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
+            text="Build a special assembly machine chunk here. Contains 6 assembling machines that run at very high speeds. [color=red]Requires energy from the shared storage. Modules have no effect![/color]"},
         ["centrifuge"] = {
             initial_cost = 1000,
---            additional_cost = 1000,
---            multiplier_cost = 2,
+            additional_cost = 1000,
+            multiplier_cost = 2,
             -- limit = 1,
-            text="在这里建造一个特殊的离心机块。 包含1个离心机，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
+            text="Build a special centrifuge chunk here. Contains 1 centrifuge that runs at very high speeds. [color=red]Requires energy from the shared storage. Modules have no effect![/color]"},
         ["rocket-silo"] = {
             initial_cost = 1000,
---            additional_cost = 0,
---            multiplier_cost = 2,
---            max_cost = 10000,
+            additional_cost = 0,
+            multiplier_cost = 2,
+            max_cost = 10000,
             -- limit = 2,
-            text="将这个特殊块转换为火箭发射台。这样你就可以在这里建造一个火箭发射井了!"},
+            text="Convert this special chunk into a rocket launch pad. This allows you to build a rocket silo here!"},
     },
 
     -- special_chunks_upgrades = {
@@ -100,32 +99,28 @@ OARC_STORE_MAP_FEATURES =
 
     special_buttons = {
         ["assembling-machine-1"] = {
-            initial_cost = 20,
-            text="传送回家。"},
+            initial_cost = 10,
+            text="Teleport home."},
         ["offshore-pump"] = {
-            initial_cost = 150,
-            text="把最近的空木箱变成水!"
+            initial_cost = 50,
+            text="Converts the closest empty wooden chest into a water tile!"
         }
-    },
-
-    seller_buttons = {
-        ["raw-fish"] = { initial_cost = 10, text="卖出五条鱼"}
     },
 
     reset_buttons = {
         ["electronic-circuit"] = {
-            initial_cost = 7500,
+            initial_cost = 5000,
             solo_force = true,
-            text="[color=red]请勿尝试 点击即清空!这不能被撤销![/color]一般重置,这个选项会完全清空你的建筑,载具与科技,但会保留背包"
+            text="DESTROY your base and restart. This allows you to choose a new spawn and will completely destroy all your buildings and your force. All technology progress will be reset. You get to keep your current items and armor! [color=red]THERE IS NO CONFIRMATION PROMPT! THIS CAN NOT BE UNDONE![/color]"
         },
         ["advanced-circuit"] = {
-            initial_cost = 7500,
+            initial_cost = 5000,
             solo_force = true,
-            text="[color=red]请勿尝试 点击即清空!这不能被撤销![/color]放弃基地,这个选项会将你的建筑保留,建筑会被移动到地图上的中立位置,但不会被任何玩家所有.你可以保留你的背包"
+            text="ABANDON your base and restart. This allows you to choose a new spawn and will move all your buildings to a neutral force. They will still be on the map and can be interacted with, but will not be owned by any player or player force. All radars will be destroyed to help trim map size. You get to keep your current items and armor! [color=red]THERE IS NO CONFIRMATION PROMPT! THIS CAN NOT BE UNDONE![/color]"
         },
         ["processing-unit"] = {
-            initial_cost = 20,
-            text="[color=red]请勿尝试 点击即清空!这不能被撤销![/color]完全重置,这个选项会清空你的建筑,载具与科技 还有背包!并重新开局"
+            initial_cost = 5000,
+            text="Restart your game. This will reset your player, your force and your base. [color=red]THERE IS NO CONFIRMATION PROMPT! THIS CAN NOT BE UNDONE![/color]"
         }
     }
 }
@@ -136,22 +131,11 @@ function CreateMapFeatureStoreTab(tab_container, player)
     if (player_inv == nil) then return end
 
     local wallet = player_inv.get_item_count("coin")
-
-    local fish = player_inv.get_item_count("raw-fish")
-
     AddLabel(tab_container,
         "map_feature_store_wallet_lbl",
-        "我的现金： " .. wallet .. "  [item=coin]",
+        "Coins Available: " .. wallet .. "  [item=coin]",
         {top_margin=5, bottom_margin=5})
-
-    AddLabel(tab_container,
-        "map_feature_store_wallet_lbl1",
-        "拥有的鱼： " .. fish .. "  [item=raw-fish] 折合现金:" ..fish*2,
-        {top_margin=5, bottom_margin=5})
-
-
-
-    AddLabel(tab_container, "coin_info", "玩家从一些硬币开始。 通过杀死敌人或钓鱼赚取更多的硬币。", my_note_style)
+    AddLabel(tab_container, "coin_info", "Players start with some coins. Earn more coins by killing enemies.", my_note_style)
 
     local line = tab_container.add{type="line", direction="horizontal"}
     line.style.top_margin = 5
@@ -172,7 +156,6 @@ function CreateMapFeatureStoreTab(tab_container, player)
                 OARC_STORE_MAP_TEXT[category],
                 {bottom_margin=5, maximal_width = 400, single_line = false})
         local flow = tab_container.add{name = category, type="flow", direction="horizontal"}
-
         for item_name,item in pairs(section) do
 
             local blocked = false
@@ -184,30 +167,27 @@ function CreateMapFeatureStoreTab(tab_container, player)
             local count = OarcMapFeaturePlayerCountGet(player, category, item_name)
             local cost = OarcMapFeatureCostScaling(player, category, item_name)
             local color = "[color=green]"
-
             if ((cost > wallet) or (cost < 0) or blocked) then
                 color = "[color=red]"
             end
-
             local btn = flow.add{name=item_name,
                         type="sprite-button",
                         -- number=item.count,
                         sprite="item/"..item_name,
                         -- tooltip=item.text.." Cost: "..color..cost.."[/color] [item=coin]",
-                        style=mod_gui.button_style }
-
+                        style=mod_gui.button_style}
             if (cost < 0) then
                 btn.enabled = false
                 btn.tooltip = item.text .. "\n "..color..
-                                 "限制: ("..count.."/"..item.limit..") [/color]"
+                                 "Limit: ("..count.."/"..item.limit..") [/color]"
             elseif (blocked) then
                 btn.enabled = false
-                btn.tooltip = item.text .. " (这只允许拥有衍生的玩家使用自己的力量。如果你的部队中有其他玩家，他们必须先重置你才能使用这个。)" .." Cost: "..color..cost.."[/color] [item=coin]"
+                btn.tooltip = item.text .. " (This is only allowed for players on their own force that own the spawn. If you have other players on your force, they must reset first before you can use this.)" .." Cost: "..color..cost.."[/color] [item=coin]"
             elseif (item.limit) then
                 btn.tooltip = item.text .. "\nCost: "..color..cost.."[/color] [item=coin] "..
-                                "限制: ("..count.."/"..item.limit..")"
+                                "Limit: ("..count.."/"..item.limit..")"
             else
-                btn.tooltip = item.text.." 费用: "..color..cost.."[/color] [item=coin]"
+                btn.tooltip = item.text.." Cost: "..color..cost.."[/color] [item=coin]"
             end
             
         end
@@ -284,57 +264,26 @@ function OarcMapFeatureCostScaling(player, category_name, feature_name)
 end
 
 function OarcMapFeatureStoreButton(event)
-
-    --取按钮实例
     local button = event.element
-
-    --取玩家实例
     local player = game.players[event.player_index]
 
-    --取玩家inv实例
     local player_inv = player.get_inventory(defines.inventory.character_main)
-
-    --判断inv是否为空
-    if (player_inv == nil) then
-        return end
-
-    --取玩家inv中coin
+    if (player_inv == nil) then return end
     local wallet = player_inv.get_item_count("coin")
 
-
-    --不明白
     local map_feature = OARC_STORE_MAP_FEATURES[button.parent.name][button.name]
 
-
-    if(button.name == "raw-fish") then
-        
-        if(player_inv.get_item_count("raw-fish") < 2)then
-            player.print("你没有那么多鱼,老板对你超级不屑...")
-            return
-        end
-
-        --减钱
-        player_inv.remove({name = "raw-fish", count = 5})
-        player_inv.insert({name = "coin", count = 10})
-        player.print("你成功卖出5条鱼 获得现金:10")
-
-    end
-
-
-    --计算花费
     -- Calculate cost based on how many player has purchased?
     local cost = OarcMapFeatureCostScaling(player, button.parent.name, button.name)
 
-
-
     -- Check if we have enough money
     if (wallet < cost) then
-        player.print("你没有那么多钱,老板对你超不屑....")
+        player.print("You're broke! Go kill some enemies or beg for change...")
         return
     end
 
     if (player.vehicle) then
-        player.print("先生，请先下车，然后再尝试购买...")
+        player.print("Sir, please step out of the vehicle before you try to make any purchases...")
         return
     end
 

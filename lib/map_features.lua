@@ -15,7 +15,7 @@ MAGIC_BUILDING_CHUNK_SPREAD = 41
 POWER_USAGE_SCALING_FACTOR = 2
 
 -- This is a table indexed by the single INPUT item!
-FURNACE_ENERGY_PER_CRAFT_SECOND = (1800 / 2) * POWER_USAGE_SCALING_FACTOR
+FURNACE_ENERGY_PER_CRAFT_SECOND = (180000 / 2) * POWER_USAGE_SCALING_FACTOR
 FURNACE_RECIPES = {
     ["iron-ore"] = {recipe_name = "iron-plate",
                     recipe_energy = 3.2*FURNACE_ENERGY_PER_CRAFT_SECOND,
@@ -32,10 +32,10 @@ FURNACE_RECIPES = {
 }
 
 -- The chemplants/refineries/assemblers lookup their own recipes since they can be set by the player.
-CHEMPLANT_ENERGY_PER_CRAFT_SECOND = 2100 * POWER_USAGE_SCALING_FACTOR
-REFINERY_ENERGY_PER_CRAFT_SECOND = 42000 * POWER_USAGE_SCALING_FACTOR
-ASSEMBLER3_ENERGY_PER_CRAFT_SECOND = (37500 / 1.25) * POWER_USAGE_SCALING_FACTOR
-CENTRIFUGE_ENERGY_PER_CRAFT_SECOND = 35000 * POWER_USAGE_SCALING_FACTOR
+CHEMPLANT_ENERGY_PER_CRAFT_SECOND = 210000 * POWER_USAGE_SCALING_FACTOR
+REFINERY_ENERGY_PER_CRAFT_SECOND = 420000 * POWER_USAGE_SCALING_FACTOR
+ASSEMBLER3_ENERGY_PER_CRAFT_SECOND = (375000 / 1.25) * POWER_USAGE_SCALING_FACTOR
+CENTRIFUGE_ENERGY_PER_CRAFT_SECOND = 350000 * POWER_USAGE_SCALING_FACTOR
 
 CHEMPLANT_POLLUTION_PER_CRAFT_SECOND = 4/60
 REFINERY_POLLUTION_PER_CRAFT_SECOND = 6/60
@@ -63,7 +63,7 @@ NEUTRAL_FORCE_RECIPES =
     -- Oil Stuff
     ["advanced-oil-processing"] = true,
     ["basic-oil-processing"] = true,
-    ["coal-liquefaction"] = true, -- Too difficult/costly to implement
+    -- ["coal-liquefaction"] = true, -- Too difficult/costly to implement
 
     ["heavy-oil-cracking"] = true,
     ["light-oil-cracking"] = true,
@@ -77,8 +77,8 @@ NEUTRAL_FORCE_RECIPES =
     ["sulfur"] = true,
     ["sulfuric-acid"] = true,
     
-    ["oil-refinery"] = true,
-    ["explosives"] = true,
+    -- ["oil-refinery"] = true,
+    -- ["explosives"] = true,
 
     -- Modules
     ["effectivity-module"] = true,
@@ -120,11 +120,11 @@ NEUTRAL_FORCE_RECIPES =
     
     -- Nuclear
     ["uranium-processing"] = true,
-    ["kovarex-enrichment-process"] = true,
-    ["nuclear-fuel-reprocessing"] = true,
+    -- ["kovarex-enrichment-process"] = true,
+    -- ["nuclear-fuel-reprocessing"] = true,
 
-    ["pipe"] = true,
-    ["pipe-to-ground"] = true,
+    -- ["pipe"] = true,
+    -- ["pipe-to-ground"] = true,
 }
 
 function SetNeutralForceAllowedRecipes()
@@ -181,9 +181,9 @@ function MagicFactoryChunkGenerator()
                 
                 table.insert(global.omagic.factory_positions, {x=chunk_x, y=chunk_y})
                 game.surfaces[GAME_SURFACE_NAME].request_to_generate_chunks(GetCenterTilePosFromChunkPos({x=chunk_x, y=chunk_y}), 0)
-                log("电炉位置: " .. chunk_x .. ", " .. chunk_y .. ", " .. angle)
+                log("Magic furnace position: " .. chunk_x .. ", " .. chunk_y .. ", " .. angle)
             else
-                log("电炉与火箭发射井位置相撞？" .. chunk_x .. ", " .. chunk_y)
+                log("Magic furnace collided with silo location?" .. chunk_x .. ", " .. chunk_y)
             end
         end
     end
@@ -269,12 +269,12 @@ function RequestSpawnSpecialChunk(player, spawn_function, feature_name)
             OarcMapFeaturePlayerCountChange(player, "special_chunks", feature_name, 1)
             return true
         else
-            player.print("看来这块除了你这个玩家之外，已经有其他东西在里面了？ " .. entities[1].name)
+            player.print("Looks like this chunk already has something in it other than just you the player?! " .. entities[1].name)
             return false
         end
 
     else
-        player.print("你需要站在这个特殊的区域内!")
+        player.print("You need to be standing inside the special chunk!")
         return false
     end
 
@@ -285,12 +285,12 @@ function SpecialChunkHelperText(pos)
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=pos.x-3.5,y=pos.y+1},
         1,
-        "为这个接口提供能量！",
+        "Supply energy to this interface!",
         {0.7,0.4,0.3,0.8})
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=pos.x-4.5,y=pos.y+2},
         1,
-        "插件/插件塔没有任何效果!",
+        "Modules/beacons DO NOT have any effect!",
         {0.7,0.4,0.3,0.8})
 end
 
@@ -387,7 +387,7 @@ function SpawnSiloChunk(chunk_pos)
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=center_pos.x-3.25,y=center_pos.y+6},
         1,
-        "你可以在这里建一个火箭发射井!",
+        "You can build a silo here!",
         {0.7,0.4,0.3,0.8})
 
     -- Set tiles below the silo

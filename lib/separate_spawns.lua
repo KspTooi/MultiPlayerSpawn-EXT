@@ -297,24 +297,13 @@ function SendPlayerToNewSpawnAndCreateIt(delayedSpawn)
         -- final_transition_time=45}
     end
 
---不给予开局蜘蛛奖励
---[[    crash_site.create_crash_site(game.surfaces[GAME_SURFACE_NAME],
-                                {x=delayedSpawn.pos.x+15, y=delayedSpawn.pos.y-25},
-                                {["spidertron"] = 1,
-                                 ["electronic-circuit"] = math.random(100,200),
-                                 ["iron-gear-wheel"] = math.random(50,100),
-                                 ["copper-cable"] = math.random(100,200),
-                                 ["steel-plate"] = math.random(50,100)},
-                                {["iron-plate"] = math.random(50,100)})]]
+    if (global.ocfg.spawn_config.gen_settings.crashed_ship) then
+        crash_site.create_crash_site(game.surfaces[GAME_SURFACE_NAME],
+                                    {x=delayedSpawn.pos.x+15, y=delayedSpawn.pos.y-25},
+                                    global.ocfg.spawn_config.gen_settings.crashed_ship_resources,
+                                    global.ocfg.spawn_config.gen_settings.crashed_ship_wreakage)
+    end
 
-    crash_site.create_crash_site(game.surfaces[GAME_SURFACE_NAME],
-        {x=delayedSpawn.pos.x+15, y=delayedSpawn.pos.y-25},
-        {
-            ["electronic-circuit"] = math.random(5,200),
-            ["iron-gear-wheel"] = math.random(5,100),
-            ["copper-cable"] = math.random(5,200),
-            ["steel-plate"] = math.random(5,100)},
-        {["iron-plate"] = math.random(5,100)})
 end
 
 function DisplayWelcomeGroundTextAtSpawn(player, pos)
@@ -322,8 +311,7 @@ function DisplayWelcomeGroundTextAtSpawn(player, pos)
     -- Render some welcoming text...
     local tcolor = {0.9, 0.7, 0.3, 0.8}
     local ttl = 2000
-	
-    local rid1 = rendering.draw_text{text="欢迎",
+    local rid1 = rendering.draw_text{text="Welcome",
                         surface=game.surfaces[GAME_SURFACE_NAME],
                         target={x=pos.x-21, y=pos.y-15},
                         color=tcolor,
@@ -336,7 +324,7 @@ function DisplayWelcomeGroundTextAtSpawn(player, pos)
                         -- alignment=center,
                         scale_with_zoom=false,
                         only_in_alt_mode=false}
-    local rid2 = rendering.draw_text{text="回家",
+    local rid2 = rendering.draw_text{text="Home",
                         surface=game.surfaces[GAME_SURFACE_NAME],
                         target={x=pos.x-14, y=pos.y-5},
                         color=tcolor,
@@ -349,26 +337,9 @@ function DisplayWelcomeGroundTextAtSpawn(player, pos)
                         -- alignment=center,
                         scale_with_zoom=false,
                         only_in_alt_mode=false}
-						
-				
-    local rid3 = rendering.draw_text{text="欢迎加入KspTooi服务器~~",
-                        surface=game.surfaces[GAME_SURFACE_NAME],
-                        target={x=pos.x-60, y=pos.y-25},
-                        color=tcolor,
-                        scale=20,
-                        font="compi",
-                        time_to_live=ttl,
-                        -- players={player},
-                        draw_on_ground=true,
-                        orientation=0,
-                        -- alignment=center,
-                        scale_with_zoom=false,
-                        only_in_alt_mode=false}	
-						
-						
+
     table.insert(global.oarc_renders_fadeout, rid1)
     table.insert(global.oarc_renders_fadeout, rid2)
-    table.insert(global.oarc_renders_fadeout, rid3)
 end
 
 --[[
@@ -439,7 +410,12 @@ function SetupAndClearSpawnAreas(surface, chunkArea)
                 end
                 if (global.ocfg.spawn_config.gen_settings.moat_choice_enabled) then
                     if (spawn.moat) then
-                        CreateMoat(surface, spawn.pos, chunkArea, global.ocfg.spawn_config.gen_settings.land_area_tiles, "water", true)
+                        CreateMoat(surface,
+                            spawn.pos,
+                            chunkArea,
+                            global.ocfg.spawn_config.gen_settings.land_area_tiles,
+                            "water",
+                            global.ocfg.spawn_config.gen_settings.moat_bridging)
                     end
                 end
             end
@@ -576,7 +552,7 @@ function ResetPlayerAndDestroyForce(player)
     player.force = global.ocfg.main_force
 
     if ((#player_old_force.players == 0) and (player_old_force.name ~= global.ocfg.main_force)) then
-        SendBroadcastMsg("Team " .. player_old_force.name .. " 已经被摧毁了！ 现在所有的建筑物都会慢慢被摧毁.")
+        SendBroadcastMsg("Team " .. player_old_force.name .. " has been destroyed! All buildings will slowly be destroyed now.")
         log("DestroyForce - FORCE DESTROYED: " .. player_old_force.name)
         game.merge_forces(player_old_force, global.ocore.destroyed_force)           
     end
@@ -591,7 +567,7 @@ function ResetPlayerAndAbandonForce(player)
     player.force = global.ocfg.main_force
 
     if ((#player_old_force.players == 0) and (player_old_force.name ~= global.ocfg.main_force)) then
-        SendBroadcastMsg("Team " .. player_old_force.name .. " 已经被抛弃了！")
+        SendBroadcastMsg("Team " .. player_old_force.name .. " has been abandoned!")
         log("AbandonForce - FORCE ABANDONED: " .. player_old_force.name)
         game.merge_forces(player_old_force, global.ocore.abandoned_force)           
     end
@@ -712,7 +688,7 @@ function CleanupPlayerGlobals(playerName)
         if (#teamMates >= 1) then
             local newOwnerName = table.remove(teamMates) -- Remove 1 to use as new owner.
             TransferOwnershipOfSharedSpawn(playerName, newOwnerName)
-            SendBroadcastMsg(playerName .. "已经离开了 " .. newOwnerName .. " 现在拥有他们的基地.")
+            SendBroadcastMsg(playerName .. "has left so " .. newOwnerName .. " now owns their base.")
         else
             global.ocore.sharedSpawns[playerName] = nil
         end
@@ -765,7 +741,7 @@ function TransferOwnershipOfSharedSpawn(prevOwnerName, newOwnerName)
     global.ocore.uniqueSpawns[newOwnerName] = global.ocore.uniqueSpawns[prevOwnerName]
     global.ocore.uniqueSpawns[prevOwnerName] = nil
 
-    game.players[newOwnerName].print("你已经拥有这个基地！")
+    game.players[newOwnerName].print("You have been given ownership of this base!")
 end
 
 --[[
@@ -892,7 +868,7 @@ function QueuePlayerForDelayedSpawn(playerName, spawn, moatEnabled, vanillaSpawn
 
         local delay_spawn_seconds = 5*(math.ceil(global.ocfg.spawn_config.gen_settings.land_area_tiles/CHUNK_SIZE))
 
-        game.players[playerName].print("现在生成您的基地，请至少等待" .. delay_spawn_seconds .. "几秒钟。。。")
+        game.players[playerName].print("Generating your spawn now, please wait for at least " .. delay_spawn_seconds .. " seconds...")
         game.players[playerName].surface.request_to_generate_chunks(spawn, 4)
         delayedTick = game.tick + delay_spawn_seconds*TICKS_PER_SECOND
         table.insert(global.ocore.delayedSpawns, {playerName=playerName, pos=spawn, moat=moatEnabled, vanilla=vanillaSpawn, delayedTick=delayedTick})
@@ -904,8 +880,8 @@ function QueuePlayerForDelayedSpawn(playerName, spawn, moatEnabled, vanillaSpawn
         RegrowthMarkAreaSafeGivenTilePos(spawn, math.ceil(global.ocfg.spawn_config.gen_settings.land_area_tiles/CHUNK_SIZE), true)
 
     else
-        log("这种事不应该发生!生成失败!")
-        SendBroadcastMsg("错误！！未能创建基地: " .. playerName)
+        log("THIS SHOULD NOT EVER HAPPEN! Spawn failed!")
+        SendBroadcastMsg("ERROR!! Failed to create spawn point for: " .. playerName)
     end
 end
 
@@ -1028,9 +1004,9 @@ function CreatePlayerCustomForce(player)
     player.force = newForce
 
     if (newForce.name == player.name) then
-        SendBroadcastMsg(player.name.." 已经开始了自己的团队！")
+        SendBroadcastMsg(player.name.." has started their own team!")
     else
-        player.print("对不起，不能创建新的团队。 您被分配到默认团队。")
+        player.print("Sorry, no new teams can be created. You were assigned to the default team instead.")
     end
 
     return newForce

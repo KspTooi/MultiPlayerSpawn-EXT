@@ -137,17 +137,14 @@ function DisplaySpawnOptions(player)
 
     -- Radio buttons to pick your team.
     if (global.ocfg.enable_separate_teams) then
-	 --禁止加主团队
-
-        --soloSpawnFlow.add{name = "isolated_spawn_main_team_radio",
-        --                type = "radiobutton",
-        --                caption={"oarc-join-main-team-radio"},
-        --                state=true}
-
+        soloSpawnFlow.add{name = "isolated_spawn_main_team_radio",
+                        type = "radiobutton",
+                        caption={"oarc-join-main-team-radio"},
+                        state=true}
         soloSpawnFlow.add{name = "isolated_spawn_new_team_radio",
                         type = "radiobutton",
                         caption={"oarc-create-own-team-radio"},
-                        state=true}
+                        state=false}
     end
 
     -- OPTIONS frame
@@ -178,13 +175,10 @@ function DisplaySpawnOptions(player)
                     type = "button",
                     caption={"oarc-solo-spawn-near"},
                     style = "confirm_button"}
-					
-					
- --禁止从远处出生					
- --   soloSpawnbuttons.add{name = "isolated_spawn_far",
- --                   type = "button",
- --                   caption={"oarc-solo-spawn-far"},
- --                   style = "confirm_button"}
+    soloSpawnbuttons.add{name = "isolated_spawn_far",
+                    type = "button",
+                    caption={"oarc-solo-spawn-far"},
+                    style = "confirm_button"}
 
     if (global.ocfg.enable_vanilla_spawns) then
         AddLabel(soloSpawnFlow, "isolated_spawn_lbl1",
@@ -263,10 +257,10 @@ function SpawnOptsRadioSelect(event)
         event.element.parent.buddy_spawn_new_team_radio.state=false
         event.element.parent.buddy_spawn_buddy_team_radio.state=false
     elseif (elemName == "buddy_spawn_new_team_radio") then
-        --event.element.parent.buddy_spawn_main_team_radio.state=false
+        event.element.parent.buddy_spawn_main_team_radio.state=false
         event.element.parent.buddy_spawn_buddy_team_radio.state=false
     elseif (elemName == "buddy_spawn_buddy_team_radio") then
-        --event.element.parent.buddy_spawn_main_team_radio.state=false
+        event.element.parent.buddy_spawn_main_team_radio.state=false
         event.element.parent.buddy_spawn_new_team_radio.state=false
     end
 end
@@ -301,17 +295,10 @@ function SpawnOptsGuiClick(event)
         (elemName == "join_other_spawn_check")) then
 
         if (global.ocfg.enable_separate_teams) then
-
-            --默认加入独立团队
-
-            -- joinMainTeamRadio =
-                -- pgcs.spawn_solo_flow.isolated_spawn_main_team_radio.state
-            --joinOwnTeamRadio =
-                -- pgcs.spawn_solo_flow.isolated_spawn_new_team_radio.state
-
-            joinMainTeamRadio = false
-            joinOwnTeamRadio = true
-
+            joinMainTeamRadio =
+                pgcs.spawn_solo_flow.isolated_spawn_main_team_radio.state
+            joinOwnTeamRadio =
+                pgcs.spawn_solo_flow.isolated_spawn_new_team_radio.state
         else
             joinMainTeamRadio = true
             joinOwnTeamRadio = false
@@ -825,23 +812,14 @@ function DisplayBuddySpawnOptions(player)
 
     -- Allow picking of teams
     if (global.ocfg.enable_separate_teams) then
-
-        --禁止加入主队伍
---[[        buddySpawnFlow.add{name = "buddy_spawn_main_team_radio",
+        buddySpawnFlow.add{name = "buddy_spawn_main_team_radio",
                         type = "radiobutton",
                         caption={"oarc-join-main-team-radio"},
-                        state=false }]]
-
---[[        buddySpawnFlow.add{name = "buddy_spawn_main_team_radio",
-            type = "radiobutton",
-            caption={"oarc-join-main-team-radio" },
-            state=false
-        }]]
-
+                        state=true}
         buddySpawnFlow.add{name = "buddy_spawn_new_team_radio",
                         type = "radiobutton",
                         caption={"oarc-create-own-team-radio"},
-                        state=true}
+                        state=false}
         buddySpawnFlow.add{name = "buddy_spawn_buddy_team_radio",
                         type = "radiobutton",
                         caption={"oarc-create-buddy-team"},
@@ -959,9 +937,7 @@ function BuddySpawnOptsGuiClick(event)
         end
 
         if (global.ocfg.enable_separate_teams) then
-            --joinMainTeamRadio = buddySpawnGui.buddy_spawn_main_team_radio.state
-
-            joinMainTeamRadio = false
+            joinMainTeamRadio = buddySpawnGui.buddy_spawn_main_team_radio.state
             joinOwnTeamRadio = buddySpawnGui.buddy_spawn_new_team_radio.state
             joinBuddyTeamRadio = buddySpawnGui.buddy_spawn_buddy_team_radio.state
         else

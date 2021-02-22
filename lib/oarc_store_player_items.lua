@@ -16,79 +16,77 @@ OARC_STORE_PLAYER_ITEMS =
     },
 
     ["Turrets"] = {
-        ["gun-turret"] = {cost = 100, count = 1, play_time_locked=false},
-        ["flamethrower-turret"] = {cost = 200, count = 1, play_time_locked=false},
-        ["laser-turret"] = {cost = 250, count = 1, play_time_locked=false},
-        ["artillery-turret"] = {cost = 2000, count = 1, play_time_locked=true},
+        ["gun-turret"] = {cost = 25, count = 1, play_time_locked=false},
+        ["flamethrower-turret"] = {cost = 50, count = 1, play_time_locked=false},
+        ["laser-turret"] = {cost = 75, count = 1, play_time_locked=false},
+        ["artillery-turret"] = {cost = 500, count = 1, play_time_locked=true},
     },
 
     ["Ammo"] = {
-        ["firearm-magazine"] = {cost = 25, count = 10, play_time_locked=false},
-        ["piercing-rounds-magazine"] = {cost = 50, count = 10, play_time_locked=false},
-        ["shotgun-shell"] = {cost = 60, count = 10, play_time_locked=false},
+        ["firearm-magazine"] = {cost = 10, count = 10, play_time_locked=false},
+        ["piercing-rounds-magazine"] = {cost = 30, count = 10, play_time_locked=false},
+        ["shotgun-shell"] = {cost = 10, count = 10, play_time_locked=false},
         ["flamethrower-ammo"] = {cost = 50, count = 10, play_time_locked=true},
         ["rocket"] = {cost = 100, count = 10, play_time_locked=true},
         -- ["railgun-dart"] = {cost = 250, count = 10, play_time_locked=true}, -- SAD
-        ["atomic-bomb"] = {cost = 2500, count = 1, play_time_locked=true},
-        ["artillery-shell"] = {cost = 75, count = 1, play_time_locked=true},
+        ["atomic-bomb"] = {cost = 1000, count = 1, play_time_locked=true},
+        ["artillery-shell"] = {cost = 50, count = 1, play_time_locked=true},
 
     },
 
     ["Special"] = {
-        ["repair-pack"] = {cost = 5, count = 1, play_time_locked=false},
-        ["raw-fish"] = {cost = 5, count = 1, play_time_locked=false},
-        ["grenade"] = {cost = 100, count = 10, play_time_locked=true},
-        ["cliff-explosives"] = {cost = 250, count = 10, play_time_locked=true},
+        ["repair-pack"] = {cost = 1, count = 1, play_time_locked=false},
+        ["raw-fish"] = {cost = 1, count = 1, play_time_locked=false},
+        ["grenade"] = {cost = 20, count = 10, play_time_locked=true},
+        ["cliff-explosives"] = {cost = 20, count = 10, play_time_locked=true},
         ["artillery-targeting-remote"] = {cost = 500, count = 1, play_time_locked=true},
-        ["loader"] = {cost = 250, count = 1, play_time_locked=false},
-        ["fast-loader"] = {cost = 500, count = 1, play_time_locked=true},
-        ["express-loader"] = {cost = 750, count = 1, play_time_locked=true},
     },
 
     ["Capsules/Mines"] = {
-        ["land-mine"] = {cost = 250, count = 25, play_time_locked=false},
-        ["defender-capsule"] = {cost = 500, count = 25, play_time_locked=false},
-        ["distractor-capsule"] = {cost = 600, count = 25, play_time_locked=false},
-        ["destroyer-capsule"] = {cost = 750, count = 25, play_time_locked=false},
-        ["poison-capsule"] = {cost = 250, count = 10, play_time_locked=false},
-        ["slowdown-capsule"] = {cost = 250, count = 10, play_time_locked=false},
+        ["land-mine"] = {cost = 20, count = 10, play_time_locked=false},
+        ["defender-capsule"] = {cost = 20, count = 10, play_time_locked=false},
+        ["distractor-capsule"] = {cost = 40, count = 10, play_time_locked=false},
+        ["destroyer-capsule"] = {cost = 60, count = 10, play_time_locked=false},
+        ["poison-capsule"] = {cost = 50, count = 10, play_time_locked=false},
+        ["slowdown-capsule"] = {cost = 25, count = 10, play_time_locked=false},
     },
 
     ["Armor"] = {
-        ["light-armor"] = {cost = 250, count = 1, play_time_locked=false},
-        ["heavy-armor"] = {cost = 500, count = 1, play_time_locked=false},
-        ["modular-armor"] = {cost = 1000, count = 1, play_time_locked=false},
-        ["power-armor"] = {cost = 2500, count = 1, play_time_locked=false},
+        ["light-armor"] = {cost = 10, count = 1, play_time_locked=false},
+        ["heavy-armor"] = {cost = 20, count = 1, play_time_locked=false},
+        ["modular-armor"] = {cost = 200, count = 1, play_time_locked=false},
+        ["power-armor"] = {cost = 1000, count = 1, play_time_locked=false},
         ["power-armor-mk2"] = {cost = 5000, count = 1, play_time_locked=false},
     },
     
     ["Power Equipment"] = {
-        ["fusion-reactor-equipment"] = {cost = 1800, count = 1, play_time_locked=false},
-        ["battery-equipment"] = {cost = 500, count = 1, play_time_locked=false},
-        ["battery-mk2-equipment"] = {cost = 2500, count = 1, play_time_locked=false},
-        ["solar-panel-equipment"] = {cost = 50, count = 1, play_time_locked=false},
+        ["fusion-reactor-equipment"] = {cost = 1000, count = 1, play_time_locked=false},
+        ["battery-equipment"] = {cost = 100, count = 1, play_time_locked=false},
+        ["battery-mk2-equipment"] = {cost = 1000, count = 1, play_time_locked=false},
+        ["solar-panel-equipment"] = {cost = 10, count = 1, play_time_locked=false},
     },
 
---[[    ["Bot Equipment"] = {
+    ["Bot Equipment"] = {
         ["personal-roboport-equipment"] = {cost = 100, count = 1, play_time_locked=false},
         ["personal-roboport-mk2-equipment"] = {cost = 500, count = 1, play_time_locked=false},
         ["construction-robot"] = {cost = 100, count = 10, play_time_locked=false},
         ["roboport"] = {cost = 1000, count = 1, play_time_locked=false},
         ["logistic-chest-storage"] = {cost = 100, count = 1, play_time_locked=false},
-    },]]
+    },
 
     ["Misc Equipment"] = {
-        ["belt-immunity-equipment"] = {cost = 200, count = 1, play_time_locked=false},
-        ["exoskeleton-equipment"] = {cost = 500, count = 1, play_time_locked=false},
-        ["night-vision-equipment"] = {cost = 500, count = 1, play_time_locked=false},
-        ["personal-laser-defense-equipment"] = {cost = 800, count = 1, play_time_locked=false},
+        ["belt-immunity-equipment"] = {cost = 10, count = 1, play_time_locked=false},
+        ["exoskeleton-equipment"] = {cost = 100, count = 1, play_time_locked=false},
+        ["night-vision-equipment"] = {cost = 50, count = 1, play_time_locked=false},
+
+        ["personal-laser-defense-equipment"] = {cost = 100, count = 1, play_time_locked=false},
         -- ["discharge-defense-equipment"] = {cost = 1, count = 1, play_time_locked=false},
-        ["energy-shield-equipment"] = {cost = 500, count = 1, play_time_locked=false},
-        ["energy-shield-mk2-equipment"] = {cost = 2500, count = 1, play_time_locked=false},
+        ["energy-shield-equipment"] = {cost = 50, count = 1, play_time_locked=false},
+        ["energy-shield-mk2-equipment"] = {cost = 500, count = 1, play_time_locked=false},
     },
 
     ["Spidertron"] = {
-        ["spidertron"] = {cost = 8000, count = 1, play_time_locked=false},
+        ["spidertron"] = {cost = 5000, count = 1, play_time_locked=false},
         ["spidertron-remote"] = {cost = 500, count = 1, play_time_locked=false},
     },
 }
@@ -101,12 +99,12 @@ function CreatePlayerStoreTab(tab_container, player)
     local wallet = player_inv.get_item_count("coin")
     AddLabel(tab_container,
         "player_store_wallet_lbl",
-        "我的现金: " .. wallet .. "  [item=coin]",
+        "Coins Available: " .. wallet .. "  [item=coin]",
         {top_margin=5, bottom_margin=5})
-    AddLabel(tab_container, "coin_info", "玩家从一些硬币开始。 通过杀死敌人赚取更多的硬币。", my_note_style)
+    AddLabel(tab_container, "coin_info", "Players start with some coins. Earn more coins by killing enemies.", my_note_style)
     AddLabel(tab_container,
         "player_store_note_lbl",
-        "玩了一段时间后，锁定的物品变得可用...",
+        "Locked items become available after playing for awhile...",
         my_note_style)
 
     local line = tab_container.add{type="line", direction="horizontal"}
@@ -124,7 +122,7 @@ function CreatePlayerStoreTab(tab_container, player)
                         type="sprite-button",
                         number=item.count,
                         sprite="item/"..item_name,
-                        tooltip=item_name .. " 费用: "..color..item.cost.."[/color] [item=coin]",
+                        tooltip=item_name .. " Cost: "..color..item.cost.."[/color] [item=coin]",
                         style=mod_gui.button_style}
             if (item.play_time_locked and (player.online_time < TICKS_PER_MINUTE*15)) then
                 btn.enabled = false
@@ -153,10 +151,10 @@ function OarcPlayerStoreButton(event)
 
         if (button.parent and button.parent.parent and button.parent.parent.player_store_wallet_lbl) then
             local wallet = player_inv.get_item_count("coin")
-            button.parent.parent.player_store_wallet_lbl.caption = "可用硬币: " .. wallet .. "  [item=coin]"
+            button.parent.parent.player_store_wallet_lbl.caption = "Coins Available: " .. wallet .. "  [item=coin]"
         end
 
     else
-        player.print("你没有那么多钱,老板对你超不屑....")
+        player.print("You're broke! Go kill some enemies or beg for change...")
     end
 end

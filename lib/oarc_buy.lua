@@ -9,8 +9,8 @@ local mod_gui = require("mod-gui")
 -- NAME of the top level element (outer frame)
 OARC_STORE_GUI = "oarc_store_gui"
 
-OARC_PLAYER_STORE_GUI_TAB_NAME = "装备商店"
-OARC_MAP_FEATURE_GUI_TAB_NAME = "特殊商店"
+OARC_PLAYER_STORE_GUI_TAB_NAME = "Item Store"
+OARC_MAP_FEATURE_GUI_TAB_NAME = "Special Store"
 
 local OARC_STORE_TAB_CONTENT_FUNCTIONS = {}
 OARC_STORE_TAB_CONTENT_FUNCTIONS[OARC_PLAYER_STORE_GUI_TAB_NAME] = CreatePlayerStoreTab
@@ -274,10 +274,10 @@ commands.add_command("donate-coins", "Toss a Coin to Your Witcher", function(com
         if ((amount_number > 0) and (player.get_main_inventory().get_item_count("coin") >= amount_number)) then
             local transfer = target_player.get_main_inventory().insert({name="coin", count=amount_number})
             player.get_main_inventory().remove({name="coin", count=transfer})
-            player.print("你转移了 " .. transfer .. " 硬币 " .. target .. ".")
-            target_player.print("你收到了 " .. transfer .. " 硬币从 " .. player.name .. ".")
+            player.print("You transfered " .. transfer .. " coins to " .. target .. ".")
+            target_player.print("You received " .. transfer .. " coins from " .. player.name .. ".")
         else
-            player.print("你没有的东西不能转让... ... (硬币不够！)")
+            player.print("You can't transfer what you don't have... (Not enough coins!)")
         end
     end
 end)

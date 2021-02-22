@@ -10,22 +10,22 @@ local mod_gui = require("mod-gui")
 OARC_GUI = "oarc_gui"
 
 -- LIST of all implemented tabs and their content Functions
-OARC_GAME_OPTS_GUI_TAB_NAME = "服务器信息"
-OARC_SPAWN_CTRL_GUI_NAME = "生成设置"
-OARC_PLAYER_LIST_GUI_TAB_NAME = "玩家"
-OARC_TAGS_GUI_TAB_NAME = "名称标签"
-OARC_ROCKETS_GUI_TAB_NAME = "火箭"
-OARC_SHARED_ITEMS_GUI_TAB_NAME = "共享项目"
-OARC_NOTEPAD_GUI_TAB_NAME = "记事本"
+OARC_GAME_OPTS_GUI_TAB_NAME = "Server Info"
+OARC_SPAWN_CTRL_GUI_NAME = "Spawn Controls"
+OARC_PLAYER_LIST_GUI_TAB_NAME = "Players"
+OARC_TAGS_GUI_TAB_NAME = "Name Tags"
+OARC_ROCKETS_GUI_TAB_NAME = "Rockets"
+OARC_SHARED_ITEMS_GUI_TAB_NAME = "Shared Items"
+OARC_NOTEPAD_GUI_TAB_NAME = "Notepad"
 
 local OARC_GUI_TAB_CONTENT_FUNCTIONS = {}
-OARC_GUI_TAB_CONTENT_FUNCTIONS["服务器信息"] = CreateGameOptionsTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["生成设置"] = CreateSpawnCtrlGuiTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["玩家"] = CreatePlayerListGuiTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["名称标签"] = CreateTagGuiTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["火箭"] = CreateRocketGuiTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["共享项目"] = CreateSharedItemsGuiTab
-OARC_GUI_TAB_CONTENT_FUNCTIONS["记事本"] = CreateNotepadGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Server Info"] = CreateGameOptionsTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Spawn Controls"] = CreateSpawnCtrlGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Players"] = CreatePlayerListGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Name Tags"] = CreateTagGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Rockets"] = CreateRocketGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Shared Items"] = CreateSharedItemsGuiTab
+OARC_GUI_TAB_CONTENT_FUNCTIONS["Notepad"] = CreateNotepadGuiTab
 
 function InitOarcGuiTabs(player)
     CreateOarcGuiButton(player)
@@ -69,7 +69,7 @@ end
 function CreateOarcGuiButton(player)
     if (mod_gui.get_button_flow(player).oarc_button == nil) then
         local b = mod_gui.get_button_flow(player).add{name="oarc_button",
-                                                        caption="查看基本信息",
+                                                        caption="CLICK ME FOR MORE INFO",
                                                         type="sprite-button",
                                                         -- sprite="utility/expand_dots",
                                                         style=mod_gui.button_style}

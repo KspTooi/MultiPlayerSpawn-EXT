@@ -222,30 +222,8 @@ function RegrowthSingleStepArray()
 
         -- Check chunk actually exists
         if (game.surfaces[GAME_SURFACE_NAME].is_chunk_generated({x=next_chunk.x, y=next_chunk.y})) then
-            OarcRegrowthRemoveOneChunk({pos={x=next_chunk.x, y=next_chunk.y}, force=false})
-            -- table.insert(global.rg.removal_list, {pos={x=next_chunk.x, y=next_chunk.y}, force=false})
-        end
-    end
-end
-
-function OarcRegrowthRemoveOneChunk(c_remove)
-    local c_pos = c_remove.pos
-    -- Confirm chunk is still expired
-    if (not global.rg.map[c_pos.x] or not global.rg.map[c_pos.x][c_pos.y]) then
-
-        -- If it is FORCE removal, then remove it regardless of pollution.
-        if (c_remove.force) then
-            game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
-            global.rg.map[c_pos.x][c_pos.y] = nil
-
-        -- If it is a normal timeout removal, don't do it if there is pollution in the chunk.
-        elseif (game.surfaces[GAME_SURFACE_NAME].get_pollution({c_pos.x*32,c_pos.y*32}) > 0) then
-            global.rg.map[c_pos.x][c_pos.y] = game.tick
-
-        -- Else delete the chunk
-        else
-            game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
-            global.rg.map[c_pos.x][c_pos.y] = nil
+            table.insert(global.rg.removal_list, {pos={x=next_chunk.x, y=next_chunk.y}, force=false})
+            global.rg.map[next_chunk.x][next_chunk.y] = nil
         end
     end
 end
@@ -253,7 +231,25 @@ end
 -- Remove all chunks at same time to reduce impact to FPS/UPS
 function OarcRegrowthRemoveAllChunks()
     for key,c_remove in pairs(global.rg.removal_list) do
-        OarcRegrowthRemoveOneChunk(c_remove)
+        local c_pos = c_remove.pos
+
+        -- Confirm chunk is still expired
+        if (not global.rg.map[c_pos.x] or not global.rg.map[c_pos.x][c_pos.y]) then
+
+            -- If it is FORCE removal, then remove it regardless of pollution.
+            if (c_remove.force) then
+                game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
+
+            -- If it is a normal timeout removal, don't do it if there is pollution in the chunk.
+            elseif (game.surfaces[GAME_SURFACE_NAME].get_pollution({c_pos.x*32,c_pos.y*32}) > 0) then
+                global.rg.map[c_pos.x][c_pos.y] = game.tick
+
+            -- Else delete the chunk
+            else
+                game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
+            end
+        end
+
         -- Remove entry
         global.rg.removal_list[key] = nil
     end
@@ -289,7 +285,7 @@ function RegrowthOnTick()
     -- Send a broadcast warning before it happens.
     if ((game.tick % interval_ticks) == interval_ticks-(60*30 + 1)) then
         if (#global.rg.removal_list > 100) then
-            SendBroadcastMsg("地图清理将在30秒内进行.未使用和旧地图块将被删除！")
+            SendBroadcastMsg("Map cleanup in 30 seconds... Unused and old map chunks will be deleted!")
         end
     end
 
@@ -297,7 +293,7 @@ function RegrowthOnTick()
     if ((game.tick % interval_ticks) == interval_ticks-1) then
         if (#global.rg.removal_list > 100) then
             OarcRegrowthRemoveAllChunks()
-            SendBroadcastMsg("地图清理完毕，对你的损失表示遗憾。")
+            SendBroadcastMsg("Map cleanup done, sorry for your loss.")
         end
     end
 end
@@ -308,12 +304,12 @@ end
 function RegrowthForceRemovalOnTick()
     -- Catch force remove flag
     if (game.tick == global.rg.force_removal_flag+60) then
-        SendBroadcastMsg("地图清理（强制）将在30秒内进行.未使用和旧地图块将被删除！")
+        SendBroadcastMsg("Map cleanup (forced) in 30 seconds... Unused and old map chunks will be deleted!")
     end
 
     if (game.tick == global.rg.force_removal_flag+(60*30 + 60)) then
         OarcRegrowthRemoveAllChunks()
-        SendBroadcastMsg("地图清理完毕，对你的损失表示遗憾。")
+        SendBroadcastMsg("Map cleanup done, sorry for your loss.")
     end
 end
 
