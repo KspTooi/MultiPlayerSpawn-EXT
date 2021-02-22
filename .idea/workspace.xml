@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2bed1a6-afcb-42fa-8426-15192d20cef1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/compat/factoriomaps.lua" beforeDir="false" afterPath="$PROJECT_DIR$/compat/factoriomaps.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/zh-CN/locale.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/locale/zh-CN/locale.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../AreaDev/Java_web/jmx5-coin-market" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
@@ -117,7 +118,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bd21e90a-d289-4ce3-847d-61d193981262" name="Default Changelist" comment="" />
+      <changelist id="d2bed1a6-afcb-42fa-8426-15192d20cef1" name="Default Changelist" comment="" />
       <created>1613751615972</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -127,6 +128,7 @@
       <workItem from="1613808566527" duration="4435000" />
       <workItem from="1613816060057" duration="13409000" />
       <workItem from="1613910313366" duration="3438000" />
+      <workItem from="1613997695793" duration="855000" />
     </task>
     <servers />
   </component>
