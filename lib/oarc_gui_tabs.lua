@@ -266,7 +266,7 @@ function CreateOarcGuiTabsPane(player)
             type="frame",
             name="sub_header",
             style = "changelog_subheader_frame"}
-        AddLabel(subhead, "scen_info", "Scenario Info and Controls", "subheader_caption_label")
+        AddLabel(subhead, "scen_info", "服务器信息与玩家管理", "subheader_caption_label")
 
         -- TABBED PANE
         local oarc_tabs = inside_frame.add{

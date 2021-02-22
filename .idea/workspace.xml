@@ -131,11 +131,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Lua Application.123.lua" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -150,7 +145,7 @@
       <workItem from="1613808566527" duration="4435000" />
       <workItem from="1613816060057" duration="13409000" />
       <workItem from="1613910313366" duration="3438000" />
-      <workItem from="1613997695793" duration="8689000" />
+      <workItem from="1613997695793" duration="9024000" />
     </task>
     <servers />
   </component>
