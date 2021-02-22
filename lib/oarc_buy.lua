@@ -151,7 +151,7 @@ function CreateOarcStoreTabsPane(player)
             name="sub_header",
             style = "changelog_subheader_frame",
             direction = "vertical"}
-        AddLabel(subhead, "store_info", "OARC Microtransactions and DLC", "subheader_caption_label")
+        AddLabel(subhead, "store_info", "KspTooi服务器 - 商店", "subheader_caption_label")
 
         -- TABBED PANE
         local store_tabs = inside_frame.add{

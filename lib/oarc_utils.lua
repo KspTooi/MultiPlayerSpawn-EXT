@@ -1018,7 +1018,7 @@ function DropGravestoneChests(player)
     end
 
     if (grave ~= nil) then
-        player.print("Successfully dropped your items into a chest! Go get them quick!")
+        player.print("成功地把你的物品扔进了一个箱子！ 快去找他们！")
     end
 end
 
@@ -1064,7 +1064,7 @@ function DropGravestoneChestFromCorpse(corpse)
     end
 
     if (grave ~= nil) and (game.players[corpse.character_corpse_player_index] ~= nil)then
-        game.players[corpse.character_corpse_player_index].print("Your corpse got eaten by biters! They kindly dropped your items into a chest! Go get them quick!")
+        game.players[corpse.character_corpse_player_index].print("你的尸体被敌人吃掉了！ 他们好心地把你的物品扔进了箱子里！ 快去找他们！")
     end
 
 end
@@ -1121,9 +1121,9 @@ function AutofillTurret(player, turret)
         -- Inserted ammo successfully
         -- FlyingText("Inserted ammo x" .. ret, turret.position, my_color_red, player.surface)
     elseif (ret == -1) then
-        FlyingText("Out of ammo!", turret.position, my_color_red, player.surface)
+        FlyingText("没子弹了！", turret.position, my_color_red, player.surface)
     elseif (ret == -2) then
-        FlyingText("Autofill ERROR! - Report this bug!", turret.position, my_color_red, player.surface)
+        FlyingText("自动装填错误! - 报告这个错误!", turret.position, my_color_red, player.surface)
     end
 end
 
@@ -1352,3 +1352,4 @@ function Autofill(event)
         AutoFillVehicle(player, eventEntity)
     end
 end
+
