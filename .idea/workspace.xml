@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d2bed1a6-afcb-42fa-8426-15192d20cef1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/zh-CN/locale.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/locale/zh-CN/locale.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +66,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Oarc独立科技" />
       <option name="VM_PARAMETERS" />
@@ -128,7 +140,7 @@
       <workItem from="1613808566527" duration="4435000" />
       <workItem from="1613816060057" duration="13409000" />
       <workItem from="1613910313366" duration="3438000" />
-      <workItem from="1613997695793" duration="855000" />
+      <workItem from="1613997695793" duration="1173000" />
     </task>
     <servers />
   </component>
