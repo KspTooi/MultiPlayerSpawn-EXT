@@ -181,9 +181,9 @@ function MagicFactoryChunkGenerator()
                 
                 table.insert(global.omagic.factory_positions, {x=chunk_x, y=chunk_y})
                 game.surfaces[GAME_SURFACE_NAME].request_to_generate_chunks(GetCenterTilePosFromChunkPos({x=chunk_x, y=chunk_y}), 0)
-                log("Magic furnace position: " .. chunk_x .. ", " .. chunk_y .. ", " .. angle)
+                log("电炉位置: " .. chunk_x .. ", " .. chunk_y .. ", " .. angle)
             else
-                log("Magic furnace collided with silo location?" .. chunk_x .. ", " .. chunk_y)
+                log("电炉与火箭发射井位置相撞？" .. chunk_x .. ", " .. chunk_y)
             end
         end
     end
@@ -269,12 +269,12 @@ function RequestSpawnSpecialChunk(player, spawn_function, feature_name)
             OarcMapFeaturePlayerCountChange(player, "special_chunks", feature_name, 1)
             return true
         else
-            player.print("Looks like this chunk already has something in it other than just you the player?! " .. entities[1].name)
+            player.print("看来这块除了你这个玩家之外，已经有其他东西在里面了？ " .. entities[1].name)
             return false
         end
 
     else
-        player.print("You need to be standing inside the special chunk!")
+        player.print("你需要站在这个特殊的区域内!")
         return false
     end
 
@@ -285,12 +285,12 @@ function SpecialChunkHelperText(pos)
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=pos.x-3.5,y=pos.y+1},
         1,
-        "Supply energy to this interface!",
+        "为这个接口提供能量！",
         {0.7,0.4,0.3,0.8})
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=pos.x-4.5,y=pos.y+2},
         1,
-        "Modules/beacons DO NOT have any effect!",
+        "插件/插件塔没有任何效果!",
         {0.7,0.4,0.3,0.8})
 end
 
@@ -387,7 +387,7 @@ function SpawnSiloChunk(chunk_pos)
     RenderPermanentGroundText(game.surfaces[GAME_SURFACE_NAME].index,
         {x=center_pos.x-3.25,y=center_pos.y+6},
         1,
-        "You can build a silo here!",
+        "你可以在这里建一个火箭发射井!",
         {0.7,0.4,0.3,0.8})
 
     -- Set tiles below the silo
