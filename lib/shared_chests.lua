@@ -54,8 +54,8 @@ function SharedEnergySpawnInput(player, pos)
         {signal={type="virtual", name="signal-M"},
         count=1})
 
-    TemporaryHelperText("Connect to electric network to contribute shared energy.", {pos.x+1.5, pos.y-1}, TICKS_PER_MINUTE*2)
-    TemporaryHelperText("Use combinator to limit number of MW shared.", {pos.x+2.5, pos.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("连接到电网以提供共享能源。", {pos.x+1.5, pos.y-1}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("使用组合器来限制共享的MW数量。", {pos.x+2.5, pos.y}, TICKS_PER_MINUTE*2)
 
     table.insert(global.oshared.electricity_inputs, {eei=inputElec, combi=inputElecCombi})
 end
@@ -79,8 +79,8 @@ function SharedEnergySpawnOutput(player, pos)
     outputElecCombi.operable = false -- Output combi is set my script!
     outputElec.last_user = player
 
-    TemporaryHelperText("Connect to electric network to consume shared energy.", {pos.x+1.5, pos.y-1}, TICKS_PER_MINUTE*2)
-    TemporaryHelperText("Combinator outputs number of MJ currently stored.", {pos.x+2.5, pos.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText(" 连接到电网以消耗共享能量。", {pos.x+1.5, pos.y-1}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("组合器输出当前存储的MJ数。", {pos.x+2.5, pos.y}, TICKS_PER_MINUTE*2)
 
     table.insert(global.oshared.electricity_outputs, {eei=outputElec, combi=outputElecCombi})
 end
@@ -161,18 +161,18 @@ end
 function FindClosestWoodenChestAndDestroy(player)
     local target_chest = FindClosestPlayerOwnedEntity(player, "wooden-chest", 16)
     if (not target_chest) then
-        player.print("Failed to find wooden-chest?")
+        player.print("找不到木箱？")
         return nil
     end
 
     if (not target_chest.get_inventory(defines.inventory.chest).is_empty()) then
-        player.print("Chest is NOT empty! Please empty it and try again.")
+        player.print("箱子不是空的！请清空它，然后再试一次。")
         return nil
     end
 
     local pos = target_chest.position
     if (not target_chest.destroy()) then
-        player.print("ERROR - Can't remove wooden chest??")
+        player.print("错误-无法移除木箱？")
         return nil
     end
 
@@ -207,7 +207,7 @@ function ConvertWoodenChestToSharedChestCombinators(player)
             SharedChestsSpawnCombinators(player, {x=pos.x,y=pos.y-1}, {x=pos.x,y=pos.y+1})
             return true
         else
-            player.print("Failed to place the special combinators. Please check there is enough space in the surrounding tiles!")
+            player.print("无法放置特殊组合器。 请检查周围是否有足够的空间！")
         end
     end
     return false
@@ -222,7 +222,7 @@ function ConvertWoodenChestToShareEnergyInput(player)
             OarcMapFeaturePlayerCountChange(player, "special_chests", "accumulator", 1)
             return true
         else
-            player.print("Failed to place the shared energy input. Please check there is enough space in the surrounding tiles!")
+            player.print("无法放置共享能量输入。请检查周围是否有足够的空间！")
         end
     end
     return false
@@ -237,7 +237,7 @@ function ConvertWoodenChestToShareEnergyOutput(player)
             OarcMapFeaturePlayerCountChange(player, "special_chests", "electric-energy-interface", 1)
             return true
         else
-            player.print("Failed to place the shared energy input. Please check there is enough space in the surrounding tiles!")
+            player.print("无法放置共享能量输入。请检查周围是否有足够的空间！")
         end
     end
     return false
@@ -250,7 +250,7 @@ function ConvertWoodenChestToWaterFill(player)
             player.surface.set_tiles({[1]={name = "water", position=pos}})
             return true
         else
-            player.print("Failed to place waterfill. Don't stand so close FOOL!")
+            player.print("无法放置水。别站得那么近，傻瓜！")
         end
     end
     return false
@@ -264,7 +264,7 @@ function DestroyClosestSharedChestEntity(player)
                                         force={"neutral"}}
 
     if (#special_entities == 0) then
-        player.print("Special entity not found? Are you close enough?")
+        player.print("找不到特殊实体？你够近了吗？")
         return
     end
 
@@ -272,7 +272,7 @@ function DestroyClosestSharedChestEntity(player)
 
     if (closest) then
         if (closest.last_user and (closest.last_user ~= player)) then
-            player.print("You can't remove other players chests!")
+            player.print("您无法移除其他玩家的箱子！")
         else
             -- Subtract from feature counter...
             local name = closest.name
@@ -289,10 +289,10 @@ function DestroyClosestSharedChestEntity(player)
             end
             
             closest.destroy()
-            player.print("Special entity removed!")
+            player.print("特殊实体已删除！")
         end
     else
-        player.print("Special entity not found? Are you close enough? -- ERROR")
+        player.print("找不到特殊实体？你够近了吗？--错误")
     end    
 end
 
@@ -310,7 +310,7 @@ function SharedChestsSpawnInput(player, pos)
     local chestInfoIn = {player=player.name,type="INPUT",entity=inputChest}
     table.insert(global.oshared.chests, chestInfoIn)
 
-    TemporaryHelperText("Place items in to share.", {pos.x+1.5, pos.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("将物品放入以共享。", {pos.x+1.5, pos.y}, TICKS_PER_MINUTE*2)
 end
 
 function SharedChestsSpawnOutput(player, pos, enable_example)
@@ -331,7 +331,7 @@ function SharedChestsSpawnOutput(player, pos, enable_example)
     local chestInfoOut = {player=player.name,type="OUTPUT",entity=outputChest}
     table.insert(global.oshared.chests, chestInfoOut)
 
-    TemporaryHelperText("Set filters to request items.", {pos.x+1.5, pos.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("设置筛选器以请求物品。", {pos.x+1.5, pos.y}, TICKS_PER_MINUTE*2)
 end
 
 
@@ -358,8 +358,8 @@ function SharedChestsSpawnCombinators(player, posCtrl, posStatus)
     local combiPair = {player=player.name,ctrl=combiCtrl,status=combiStat}
     table.insert(global.oshared.chests_combinators, combiPair)
 
-    TemporaryHelperText("Set signals here to monitor item counts.", {posCtrl.x+1.5, posCtrl.y}, TICKS_PER_MINUTE*2)
-    TemporaryHelperText("Receive signals here to see available items.", {posStatus.x+1.5, posStatus.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("在此处设置信号以监视物品计数。", {posCtrl.x+1.5, posCtrl.y}, TICKS_PER_MINUTE*2)
+    TemporaryHelperText("在这里接收信号以查看可用物品。", {posStatus.x+1.5, posStatus.y}, TICKS_PER_MINUTE*2)
 end
 
 function SharedChestsUpdateCombinators()
@@ -654,7 +654,7 @@ function CreateSharedItemsGuiTab(tab_container, player)
     ApplyStyle(scrollFrame, my_shared_item_list_fixed_width_style)
     scrollFrame.horizontal_scroll_policy = "never"
 
-    AddLabel(scrollFrame, "share_items_info", "Place items into the [color=yellow]yellow storage chests to share[/color].\nRequest items from the [color=blue]blue requestor chests to pull out items[/color].\nTo refresh this view, click the tab again.\nShared items are accessible by [color=red]EVERYONE and all teams[/color].\nThe combinator pair allows you to 'set' item types to watch for. Set items in the top one, and connect the bottom one to a circuit network to view the current available inventory. Items with 0 amount do not generate any signal.\nThe special accumulators share energy. The top one acts as an input, the bottom is the output.", my_longer_label_style)
+    AddLabel(scrollFrame, "share_items_info", "将物品放入 [color=yellow]黄色共享储物箱[/color].\n请求来自[color=blue]蓝色的请求者箱子里可以取出物品[/color].\n要刷新此视图，请再次点击标签。\n共享物品可由 [color=red] 所有人和所有团队[/color].\n组合器对允许您“设置”要监视的物品类型。 在顶部设置物品，然后将底部连接到电路网络以查看当前可用库存。 数量为0的物品不会产生任何信号。\n特殊蓄电池共享能量。顶部作为输入，底部是输出。", my_longer_label_style)
 
     AddSpacerLine(scrollFrame)
 
@@ -670,10 +670,10 @@ function CreateSharedItemsGuiTab(tab_container, player)
         rate_color = "orange"
     end
 
-    AddLabel(scrollFrame, "elec_avail_info", "[color=acid]Current electricity available: " .. string.format("%.3f", global.oshared.energy_stored/1000000) .. "MJ[/color] [color=" .. rate_color .. "](" .. energy_add_str .. " " .. energy_sub_str ..")[/color]", my_longer_label_style)
+    AddLabel(scrollFrame, "elec_avail_info", "[color=acid]现有电力: " .. string.format("%.3f", global.oshared.energy_stored/1000000) .. "MJ[/color] [color=" .. rate_color .. "](" .. energy_add_str .. " " .. energy_sub_str ..")[/color]", my_longer_label_style)
 
     AddSpacerLine(scrollFrame)
-    AddLabel(scrollFrame, "share_items_title_msg", "Shared Items:", my_label_header_style)
+    AddLabel(scrollFrame, "share_items_title_msg", "共享物品:", my_label_header_style)
 
     local sorted_items = {}
     for k in pairs(global.oshared.items) do table.insert(sorted_items, k) end

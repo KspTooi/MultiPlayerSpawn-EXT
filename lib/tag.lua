@@ -4,28 +4,28 @@
 
 -- Tag list
 local roles = {
-    {display_name = "[Solo]"},
-    {display_name = "[Mining]"},
-    {display_name = "[Power]"},
-    {display_name = "[Oil]"},
-    {display_name = "[Smelt]"},
-    {display_name = "[Rail]"},
-    {display_name = "[Defense]"},
-    {display_name = "[Circuits]"},
-    {display_name = "[Science!]"},
-    {display_name = "[Logistics]"},
-    {display_name = "[Misc]"},
-    {display_name = "[Aliens]"},
-    {display_name = "[Rocket]"},
-    {display_name = "[AFK]"}}
+    {display_name = "[自立]"},
+    {display_name = "[采矿]"},
+    {display_name = "[电力]"},
+    {display_name = "[原油]"},
+    {display_name = "[冶炼]"},
+    {display_name = "[铁路]"},
+    {display_name = "[防御]"},
+    {display_name = "[电路]"},
+    {display_name = "[科技！]"},
+    {display_name = "[物流]"},
+    {display_name = "[其他]"},
+    {display_name = "[VIP]"},
+    {display_name = "[SVIP]"},
+    {display_name = "[挂机]"}}
 
 function CreateTagGuiTab(tab_container, player)
     for i,role in ipairs(roles) do
         tab_container.add{type="button", caption=role.display_name, name=role.display_name}
     end
     if (player.admin) then
-        tab_container.add{type="button", caption="[Admin]", name="admin"}
-        tab_container.add{type="button", caption="[Moderator]", name="moderator"}
+        tab_container.add{type="button", caption="[管理员]", name="admin"}
+        tab_container.add{type="button", caption="[服主]", name="moderator"}
     end
     tab_container.add{type="button", caption="Clear", name="clear_btn"}
 end
@@ -44,9 +44,9 @@ function TagGuiClick(event)
         if (name == role.display_name) then
             player.tag = role.display_name
         elseif (name == "admin") then
-            player.tag = "[Admin]"
+            player.tag = "[管理员]"
         elseif (name == "moderator") then
-            player.tag = "[Moderator]"
+            player.tag = "[服主]"
         end
     end
 end
