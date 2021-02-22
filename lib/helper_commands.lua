@@ -4,7 +4,7 @@
 
 require("lib/oarc_utils")
 
-commands.add_command("run", "change player speed bonus", function(command)
+commands.add_command("run", "更改玩家的速度(change player speed bonus)", function(command)
     local player = game.players[command.player_index];
     if player ~= nil then
         if (command.parameter ~= nil) then
@@ -19,7 +19,7 @@ commands.add_command("run", "change player speed bonus", function(command)
     end
 end)
 
-commands.add_command("handcraft", "change player speed bonus", function(command)
+commands.add_command("handcraft", "更改玩家的速度(change player speed bonus)", function(command)
     local player = game.players[command.player_index];
     if player ~= nil then
         if (command.parameter ~= nil) then
@@ -34,7 +34,7 @@ commands.add_command("handcraft", "change player speed bonus", function(command)
     end
 end)
 
-commands.add_command("mine", "change player speed bonus", function(command)
+commands.add_command("mine", "更改玩家的速度(change player speed bonus)", function(command)
     local player = game.players[command.player_index];
     if player ~= nil then
         if (command.parameter ~= nil) then
@@ -49,7 +49,7 @@ commands.add_command("mine", "change player speed bonus", function(command)
     end
 end)
 
-commands.add_command("kit", "give a start kit", function(command)
+commands.add_command("kit", "给予新手礼包(give a start kit)", function(command)
     local player = game.players[command.player_index];
     if player ~= nil and player.admin then
         local target = player
@@ -58,10 +58,10 @@ commands.add_command("kit", "give a start kit", function(command)
         end
         if target ~= nil then
             GivePlayerStarterItems(target);
-            player.print("gave a kit to " .. target.name);
-            target.print("you have been given a start kit");
+            player.print("新手礼包已经成功发送给 " .. target.name);
+            target.print("你已获得新手礼包!");
         else
-            player.print("no player " .. command.parameter);
+            player.print("没有那样的玩家! " .. command.parameter);
         end
     end
 end)
