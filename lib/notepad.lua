@@ -9,10 +9,10 @@ function CreateNotepadGuiTab(tab_container, player)
     end
 
     if global.oarc_notepad[player.name] == nil then
-        global.oarc_notepad[player.name] = "Write something here...!"
+        global.oarc_notepad[player.name] = "在这里写点东西...!"
     end
 
-    AddLabel(tab_container, "notepad_info", "Use this to take notes:", my_longer_label_style)
+    AddLabel(tab_container, "notepad_info", "用这个来记笔记:", my_longer_label_style)
 
     local txt_box = tab_container.add{type="text-box", name="oarc_notepad_textbox", text=global.oarc_notepad[player.name]}
     ApplyStyle(txt_box, my_notepad_fixed_width_style)
