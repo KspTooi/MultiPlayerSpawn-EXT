@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2bed1a6-afcb-42fa-8426-15192d20cef1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/control.lua" beforeDir="false" afterPath="$PROJECT_DIR$/control.lua" afterDir="false" />
-    </list>
+    <list default="true" id="d2bed1a6-afcb-42fa-8426-15192d20cef1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +142,7 @@
       <workItem from="1613808566527" duration="4435000" />
       <workItem from="1613816060057" duration="13409000" />
       <workItem from="1613910313366" duration="3438000" />
-      <workItem from="1613997695793" duration="10364000" />
+      <workItem from="1613997695793" duration="10964000" />
     </task>
     <servers />
   </component>
