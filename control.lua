@@ -14,7 +14,6 @@
 -- if you can.
 
 
-
 -- To keep the scenario more manageable (for myself) I have done the following:
 --      1. Keep all event calls in control.lua (here)
 --      2. Put all config options in config.lua and provided an example-config.lua file too.
