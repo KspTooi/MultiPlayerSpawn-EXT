@@ -11,7 +11,7 @@ function CreatePlayerListGuiTab(tab_container, player)
     ApplyStyle(scrollFrame, my_player_list_fixed_width_style)
     scrollFrame.horizontal_scroll_policy = "never"
 
-    AddLabel(scrollFrame, "online_title_msg", "Online Players:", my_label_header_style)
+    AddLabel(scrollFrame, "online_title_msg", "在线玩家:", my_label_header_style)
     for _,player in pairs(game.connected_players) do
         local caption_str = player.name.." ["..player.force.name.."]".." ("..formattime_hours_mins(player.online_time)..")"
         if (player.admin) then
@@ -24,7 +24,7 @@ function CreatePlayerListGuiTab(tab_container, player)
     -- List offline players
     if (global.ocfg.list_offline_players) then
         AddSpacerLine(scrollFrame)
-        AddLabel(scrollFrame, "offline_title_msg", "Offline Players:", my_label_header_grey_style)
+        AddLabel(scrollFrame, "offline_title_msg", "离线玩家:", my_label_header_grey_style)
         for _,player in pairs(game.players) do
             if (not player.connected) then
                 local caption_str = player.name.." ["..player.force.name.."]".." ("..formattime_hours_mins(player.online_time)..")"
