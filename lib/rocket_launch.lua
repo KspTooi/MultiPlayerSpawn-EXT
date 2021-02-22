@@ -16,7 +16,7 @@ function RocketLaunchEvent(event)
     -- Notify players on force if rocket was launched without sat.
     if event.rocket.get_item_count("satellite") == 0 then
         for index, player in pairs(force.players) do
-            player.print("You launched the rocket, but you didn't put a satellite inside.")
+            player.print("你发射了火箭，但你没有在里面放卫星。")
         end
         return
     end
@@ -24,8 +24,8 @@ function RocketLaunchEvent(event)
     -- First ever sat launch
     if not global.ocore.satellite_sent then
         global.ocore.satellite_sent = {}
-        SendBroadcastMsg("Team " .. force.name .. " was the first to launch a rocket!")
-        ServerWriteFile("rocket_events", "Team " .. force.name .. " was the first to launch a rocket!" .. "\n")
+        SendBroadcastMsg("Team " .. force.name .. " 是第一个发射火箭的人！")
+        ServerWriteFile("rocket_events", "Team " .. force.name .. "  是第一个发射火箭的人！" .. "\n")
 
         for name,player in pairs(game.players) do
             SetOarcGuiTabEnabled(player, OARC_ROCKETS_GUI_TAB_NAME, true)
@@ -35,15 +35,15 @@ function RocketLaunchEvent(event)
     -- Track additional satellites launched by this force
     if global.ocore.satellite_sent[force.name] then
         global.ocore.satellite_sent[force.name] = global.ocore.satellite_sent[force.name] + 1
-        SendBroadcastMsg("Team " .. force.name .. " launched another rocket. Total " .. global.ocore.satellite_sent[force.name])
-        ServerWriteFile("rocket_events", "Team " .. force.name .. " launched another rocket. Total " .. global.ocore.satellite_sent[force.name] .. "\n")
+        SendBroadcastMsg("Team " .. force.name .. "  发射了另一枚火箭。 共计 " .. global.ocore.satellite_sent[force.name])
+        ServerWriteFile("rocket_events", "Team " .. force.name .. " 发射了另一枚火箭。 共计 " .. global.ocore.satellite_sent[force.name] .. "\n")
 
     -- First sat launch for this force.
     else
         -- game.set_game_state{game_finished=true, player_won=true, can_continue=true}
         global.ocore.satellite_sent[force.name] = 1
-        SendBroadcastMsg("Team " .. force.name .. " launched their first rocket!")
-        ServerWriteFile("rocket_events", "Team " .. force.name .. " launched their first rocket!" .. "\n")
+        SendBroadcastMsg("Team " .. force.name .. " 发射了他们的第一枚火箭！")
+        ServerWriteFile("rocket_events", "Team " .. force.name .. "  发射了他们的第一枚火箭！" .. "\n")
 
         -- Unlock research and recipes
         if global.ocfg.lock_goodies_rocket_launch then
@@ -62,10 +62,10 @@ end
 function CreateRocketGuiTab(tab_container, player)
     -- local frame = tab_container.add{type="frame", name="rocket-panel", caption="Satellites Launched:", direction = "vertical"}
 
-    AddLabel(tab_container, nil, "Satellites Launched:", my_label_header_style)
+    AddLabel(tab_container, nil, "发射的卫星:", my_label_header_style)
 
     if (global.ocore.satellite_sent == nil) then
-        AddLabel(tab_container, nil, "No launches yet.", my_label_style)
+        AddLabel(tab_container, nil, "还没有发射.", my_label_style)
     else
         for force_name,sat_count in pairs(global.ocore.satellite_sent) do
             AddLabel(tab_container,
