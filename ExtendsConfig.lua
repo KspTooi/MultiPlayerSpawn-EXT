@@ -16,6 +16,14 @@ extConf.placeTextWithPlayerSpawn = {
 }
 
 
+--是否允许玩家加入主团队
+extConf.enableMainTeam=false
+
+--Discord
+extConf.serverInfoDiscordText = "discord.gg/trnpcen"
+--QQGroup
+extConf.serverInfoQQGroupText = "QQ群:860179317"
+
 
 
 

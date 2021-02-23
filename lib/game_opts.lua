@@ -51,9 +51,16 @@ function CreateGameOptionsTab(tab_container, player)
     AddLabel(tab_container, "info_1", global.ocfg.welcome_msg, my_longer_label_style)
     AddLabel(tab_container, "info_2", global.ocfg.server_rules, my_longer_label_style)
     AddLabel(tab_container, "info_3", global.ocfg.server_contact, my_longer_label_style)
+
+
+    AddSpacerLine(tab_container)
+    tab_container.add{type="textfield",
+                      tooltip="加入我们的QQ群 (可复制群号)!",
+                      text=extConf.serverInfoQQGroupText}
+
     tab_container.add{type="textfield",
                             tooltip="Come join the discord (copy this invite)!",
-                            text=DISCORD_INV}
+                            text=extConf.serverInfoDiscordText}
     AddSpacerLine(tab_container)
 
     -- Enemy Settings:

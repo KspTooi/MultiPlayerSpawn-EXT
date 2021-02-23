@@ -102,6 +102,15 @@ my_longer_label_style = {
     top_padding = 0,
     bottom_padding = 0
 }
+
+text_label_inline = {
+    maximal_width = 600,
+    single_line = true,
+    font_color = {r=1,g=1,b=1},
+    top_padding = 0,
+    bottom_padding = 0
+}
+
 my_longer_warning_style = {
     maximal_width = 600,
     single_line = false,

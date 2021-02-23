@@ -3,6 +3,9 @@
 
 -- I made a separate file for all the GUI related functions
 
+---2021 Feb
+---KspTooi
+
 require("lib/separate_spawns")
 
 local SPAWN_GUI_MAX_WIDTH = 500
@@ -26,6 +29,7 @@ local SPAWN_GUI_MAX_HEIGHT = 1000
 -- A display gui message
 -- Meant to be display the first time a player joins.
 function DisplayWelcomeTextGui(player)
+
     if ((player.gui.screen["welcome_msg"] ~= nil) or
         (player.gui.screen["spawn_opts"] ~= nil) or
         (player.gui.screen["shared_spawn_opts"] ~= nil) or
@@ -42,6 +46,7 @@ function DisplayWelcomeTextGui(player)
                             type = "frame",
                             direction = "vertical",
                             caption=global.ocfg.welcome_title}
+
     wGui.auto_center=true
 
     wGui.style.maximal_width = SPAWN_GUI_MAX_WIDTH
@@ -74,7 +79,9 @@ end
 
 
 -- Handle the gui click of the welcome msg
+----欢迎界面点击事件
 function WelcomeTextGuiClick(event)
+
     if not (event and event.element and event.element.valid) then return end
     local player = game.players[event.player_index]
     local buttonClicked = event.element.name
@@ -93,8 +100,10 @@ function WelcomeTextGuiClick(event)
 end
 
 
+
 -- Display the spawn options and explanation
 function DisplaySpawnOptions(player)
+
     if (player == nil) then
         log("DisplaySpawnOptions with no valid player...")
         return
@@ -137,12 +146,19 @@ function DisplaySpawnOptions(player)
 
     -- Radio buttons to pick your team.
     if (global.ocfg.enable_separate_teams) then
-	 --禁止加主团队
 
-        --soloSpawnFlow.add{name = "isolated_spawn_main_team_radio",
-        --                type = "radiobutton",
-        --                caption={"oarc-join-main-team-radio"},
-        --                state=true}
+
+        --是否允许玩家加入主团队
+        if (extConf.enableMainTeam==true) then
+
+            soloSpawnFlow.add{name = "isolated_spawn_main_team_radio",
+                            type = "radiobutton",
+                            caption={"oarc-join-main-team-radio"},
+                            state=false}
+
+        end
+
+
 
         soloSpawnFlow.add{name = "isolated_spawn_new_team_radio",
                         type = "radiobutton",
@@ -248,9 +264,12 @@ function DisplaySpawnOptions(player)
 end
 
 
+--- 更新玩家选择框
 -- This just updates the radio buttons/checkboxes when players click them.
 function SpawnOptsRadioSelect(event)
+
     if not (event and event.element and event.element.valid) then return end
+
     local elemName = event.element.name
 
     if (elemName == "isolated_spawn_main_team_radio") then
@@ -272,8 +291,10 @@ function SpawnOptsRadioSelect(event)
 end
 
 
+----重生界面点击事件
 -- Handle the gui click of the spawn options
 function SpawnOptsGuiClick(event)
+
     if not (event and event.element and event.element.valid) then return end
     local player = game.players[event.player_index]
     local elemName = event.element.name
@@ -303,27 +324,31 @@ function SpawnOptsGuiClick(event)
         if (global.ocfg.enable_separate_teams) then
 
             --默认加入独立团队
+            if(extConf.enableMainTeam==true)then
+                joinMainTeamRadio = pgcs.spawn_solo_flow.isolated_spawn_main_team_radio.state
+                joinOwnTeamRadio = pgcs.spawn_solo_flow.isolated_spawn_new_team_radio.state
+            else
+                joinMainTeamRadio = false
+                joinOwnTeamRadio = true
+            end
 
-            -- joinMainTeamRadio =
-                -- pgcs.spawn_solo_flow.isolated_spawn_main_team_radio.state
-            --joinOwnTeamRadio =
-                -- pgcs.spawn_solo_flow.isolated_spawn_new_team_radio.state
 
-            joinMainTeamRadio = false
-            joinOwnTeamRadio = true
 
         else
             joinMainTeamRadio = true
             joinOwnTeamRadio = false
         end
+
         if (global.ocfg.spawn_config.gen_settings.moat_choice_enabled and not global.ocfg.enable_vanilla_spawns and
             (pgcs.spawn_solo_flow.isolated_spawn_moat_option_checkbox ~= nil)) then
             moatChoice = pgcs.spawn_solo_flow.isolated_spawn_moat_option_checkbox.state
         end
+
         -- if (global.ocfg.enable_vanilla_spawns and
         --     (pgcs.spawn_solo_flow.isolated_spawn_vanilla_option_checkbox ~= nil)) then
         --     vanillaChoice = pgcs.spawn_solo_flow.isolated_spawn_vanilla_option_checkbox.state
         -- end
+
         pgcs.destroy()
     else
         return -- Do nothing, no valid element item was clicked.

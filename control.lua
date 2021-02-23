@@ -24,6 +24,13 @@
 -- Generic Utility Includes
 require("lib/oarc_utils")
 
+-- Main Configuration File
+require("config")
+-- Extends Configuration File
+require("ExtendsConfig")
+
+
+
 -- Other soft-mod type features.
 require("lib/frontier_silo")
 require("lib/tag")
@@ -31,6 +38,7 @@ require("lib/game_opts")
 require("lib/player_list")
 require("lib/rocket_launch")
 require("lib/admin_commands")
+require("lib.ksptooi.ExtCommands")
 require("lib/regrowth_map")
 require("lib/shared_chests")
 require("lib/notepad")
@@ -38,13 +46,12 @@ require("lib/map_features")
 require("lib/oarc_buy")
 require("lib/auto_decon_miners")
 
+
 -- For Philip. I currently do not use this and need to add proper support for
 -- commands like this in the future.
 -- require("lib/rgcommand")
 -- require("lib/helper_commands")
 
--- Main Configuration File
-require("config")
 
 -- Save all config settings to global table.
 require("lib/oarc_global_cfg.lua")
