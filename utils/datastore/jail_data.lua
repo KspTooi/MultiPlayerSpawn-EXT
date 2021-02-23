@@ -20,7 +20,7 @@ local settings = {
 local set_data = Server.set_data
 local try_get_data = Server.try_get_data
 local concat = table.concat
-
+local text = require "ExendsConfig"
 local valid_commands = {
     ['free'] = true,
     ['jail'] = true
@@ -173,7 +173,7 @@ local create_gulag_surface = function()
         end
 
         rendering.draw_text {
-            text = 'The pit of despair ☹',
+            text = text.jail[text1],
             surface = surface,
             target = {0, -50},
             color = {r = 0.98, g = 0.66, b = 0.22},

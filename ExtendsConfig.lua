@@ -16,9 +16,9 @@ extConf.placeTextWithPlayerSpawn = {
 }
 
 
-
-
-
+extConf.jail = {
+    text1= "有点小失望☹",
+}
 
 
 return extConf
