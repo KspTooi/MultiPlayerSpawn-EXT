@@ -3,3 +3,22 @@
 --- Created by Administrator.
 --- DateTime: 2021/2/23 17:51
 ---
+
+extConf = {}
+
+
+extConf.placeTextWithPlayerJoining="KspTooi"
+
+extConf.placeTextWithPlayerSpawn = {
+    text1= "欢迎加入KspTooi服务器",
+    text2= "欢迎",
+    text3= "回家"
+}
+
+
+
+
+
+
+
+return extConf
