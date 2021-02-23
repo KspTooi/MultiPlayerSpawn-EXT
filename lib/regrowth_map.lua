@@ -285,7 +285,7 @@ function RegrowthOnTick()
     -- Send a broadcast warning before it happens.
     if ((game.tick % interval_ticks) == interval_ticks-(60*30 + 1)) then
         if (#global.rg.removal_list > 100) then
-            SendBroadcastMsg("Map cleanup in 30 seconds... Unused and old map chunks will be deleted!")
+            SendBroadcastMsg("30秒后开始地图区块清理程序!")
         end
     end
 
@@ -293,7 +293,7 @@ function RegrowthOnTick()
     if ((game.tick % interval_ticks) == interval_ticks-1) then
         if (#global.rg.removal_list > 100) then
             OarcRegrowthRemoveAllChunks()
-            SendBroadcastMsg("Map cleanup done, sorry for your loss.")
+            SendBroadcastMsg("区块已清理!")
         end
     end
 end
@@ -304,12 +304,12 @@ end
 function RegrowthForceRemovalOnTick()
     -- Catch force remove flag
     if (game.tick == global.rg.force_removal_flag+60) then
-        SendBroadcastMsg("Map cleanup (forced) in 30 seconds... Unused and old map chunks will be deleted!")
+        SendBroadcastMsg("30秒后开始地图区块清理程序(强制)!")
     end
 
     if (game.tick == global.rg.force_removal_flag+(60*30 + 60)) then
         OarcRegrowthRemoveAllChunks()
-        SendBroadcastMsg("Map cleanup done, sorry for your loss.")
+        SendBroadcastMsg("区块已清理!")
     end
 end
 
