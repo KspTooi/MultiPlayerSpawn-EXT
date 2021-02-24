@@ -52,6 +52,9 @@ function CreateGameOptionsTab(tab_container, player)
     AddLabel(tab_container, "info_2", global.ocfg.server_rules, my_longer_label_style)
     AddLabel(tab_container, "info_3", global.ocfg.server_contact, my_longer_label_style)
 
+    AddSpacerLine(tab_container)
+    AddLabel(tab_container, "displayVersion", extConf.displayVersion, my_longer_label_style)
+
 
     AddSpacerLine(tab_container)
     tab_container.add{type="textfield",
