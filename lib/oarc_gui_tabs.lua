@@ -13,13 +13,13 @@ OARC_GUI = "oarc_gui"
 -----------------BAD CODE-------------------!
 
 -- LIST of all implemented tabs and their content Functions
-OARC_GAME_OPTS_GUI_TAB_NAME = "服务器信息"
+--[[OARC_GAME_OPTS_GUI_TAB_NAME = "服务器信息"
 OARC_SPAWN_CTRL_GUI_NAME = "我的基地"
 OARC_PLAYER_LIST_GUI_TAB_NAME = "在线玩家"
 OARC_TAGS_GUI_TAB_NAME = "我的标签"
 OARC_ROCKETS_GUI_TAB_NAME = "火箭相关"
 OARC_SHARED_ITEMS_GUI_TAB_NAME = "查看共享物品"
-OARC_NOTEPAD_GUI_TAB_NAME = "记事本"
+OARC_NOTEPAD_GUI_TAB_NAME = "记事本"]]
 
 --[[local OARC_GUI_TAB_CONTENT_FUNCTIONS = {}
 OARC_GUI_TAB_CONTENT_FUNCTIONS["服务器信息"] = CreateGameOptionsTab
@@ -39,27 +39,27 @@ local GUI_TAB_ITEM = {
         itemTarget = CreateGameOptionsTab
     },
     {
-        itemName = "我的基地",
+        itemName = "生成设置",
         itemValue = "",
         itemTarget = CreateSpawnCtrlGuiTab
     },
     {
-        itemName = "在线玩家",
+        itemName = "玩家",
         itemValue = "playerList",
         itemTarget = CreatePlayerListGuiTab
     },
     {
-        itemName = "我的标签",
+        itemName = "名称标签",
         itemValue = "playerTags",
         itemTarget = CreateTagGuiTab
     },
     {
-        itemName = "火箭相关",
+        itemName = "火箭",
         itemValue = "rocket",
         itemTarget = CreateRocketGuiTab
     },
     {
-        itemName = "查看共享物品",
+        itemName = "共享项目",
         itemValue = "chestSharing",
         itemTarget = CreateSharedItemsGuiTab
     },
@@ -74,6 +74,8 @@ local GUI_TAB_ITEM = {
 
 --玩家菜单初始化
 function InitOarcGuiTabs(player)
+
+
 
     CreateOarcGuiButton(player)
 
@@ -196,17 +198,18 @@ function GetOarcGuiTabsPane(player)
 end
 
 function ClickOarcGuiButton(event)
+
     if not (event and event.element and event.element.valid) then return end
     local player = game.players[event.player_index]
     local name = event.element.name
 
     if (name ~= "oarc_button") then return end
 
-    if (event.element.caption ~= "") then
+--[[    if (event.element.caption ~= "") then
         event.element.caption = ""
-        event.element.style.width = 20
-        event.element.sprite="utility/expand_dots"
-    end
+        --event.element.style.width = 20
+        --event.element.sprite="utility/expand_dots"
+    end]]
 
     if (not DoesOarcGuiExist(player)) then
         CreateOarcGuiTabsPane(player)
@@ -221,6 +224,7 @@ function ClickOarcGuiButton(event)
 end
 
 function TabChangeOarcGui(event)
+
     if (event.element.name ~= "oarc_tabs") then return end
 
     local player = game.players[event.player_index]
@@ -280,6 +284,7 @@ end
 -- Function creates a new tab.
 -- It adds whatever it wants to the provided scroll-pane.
 function AddOarcGuiTab(player, tab_name)
+
     if (not DoesOarcGuiExist(player)) then
         CreateOarcGuiTabsPane(player)
     end
@@ -336,6 +341,8 @@ function SetOarGuiTabContent(player, tab_name)
     --遍历该玩家的所有TAB标签
     for _,t in ipairs(otabs.tabs) do
 
+
+
         --如果该玩家的所有标签里包含选中的标签
         if (t.tab.name == tab_name) then
 
@@ -344,6 +351,7 @@ function SetOarGuiTabContent(player, tab_name)
 
             --遍历对象集合
             for i,k in ipairs(GUI_TAB_ITEM) do
+
 
                 if(k.itemName == tab_name) then
                     k.itemTarget(t.content, player)

@@ -9,14 +9,15 @@ local mod_gui = require("mod-gui")
 -- NAME of the top level element (outer frame)
 OARC_STORE_GUI = "oarc_store_gui"
 
-OARC_PLAYER_STORE_GUI_TAB_NAME = "普通商店"
-OARC_MAP_FEATURE_GUI_TAB_NAME = "高级商店"
+OARC_PLAYER_STORE_GUI_TAB_NAME = "装备商店"
+OARC_MAP_FEATURE_GUI_TAB_NAME = "特殊商店"
 
 local OARC_STORE_TAB_CONTENT_FUNCTIONS = {}
 OARC_STORE_TAB_CONTENT_FUNCTIONS[OARC_PLAYER_STORE_GUI_TAB_NAME] = CreatePlayerStoreTab
 OARC_STORE_TAB_CONTENT_FUNCTIONS[OARC_MAP_FEATURE_GUI_TAB_NAME] = CreateMapFeatureStoreTab
 
 function InitOarcStoreGuiTabs(player)
+
     CreateOarcStoreButton(player)
     CreateOarcStoreTabsPane(player)
 
@@ -33,6 +34,7 @@ end
 
 function CreateOarcStoreButton(player)
     if (mod_gui.get_button_flow(player).oarc_store == nil) then
+
         local b = mod_gui.get_button_flow(player).add{name="oarc_store",
                                                         type="sprite-button",
                                                         sprite="item/coin",
@@ -73,6 +75,7 @@ function GetOarcStoreTabsPane(player)
 end
 
 function ClickOarcStoreButton(event)
+
     if not (event and event.element and event.element.valid) then return end
     local button = event.element
     local player = game.players[event.player_index]
@@ -80,12 +83,12 @@ function ClickOarcStoreButton(event)
     -- Don't allow any clicks on the store while player is dead!
     if (not player or player.ticks_to_respawn) then
         if (DoesOarcStoreExist(player)) then
-            HideOarcStore(player)   
+            HideOarcStore(player)
         end
         return
     end
 
-    if (button.name == "oarc_store") then 
+    if (button.name == "oarc_store") then
         if (not DoesOarcStoreExist(player)) then
             CreateOarcStoreTabsPane(player)
         else
@@ -106,6 +109,7 @@ function ClickOarcStoreButton(event)
 end
 
 function TabChangeOarcStore(event)
+
     if (event.element.name ~= "store_tabs") then return end
 
     local player = game.players[event.player_index]
@@ -128,7 +132,9 @@ function FakeTabChangeEventOarcStore(player)
 end
 
 function CreateOarcStoreTabsPane(player)
+
     if (mod_gui.get_frame_flow(player)[OARC_STORE_GUI] == nil) then
+
 
         -- OUTER FRAME (TOP GUI ELEMENT)
         local frame = mod_gui.get_frame_flow(player).add{
@@ -151,6 +157,7 @@ function CreateOarcStoreTabsPane(player)
             name="sub_header",
             style = "changelog_subheader_frame",
             direction = "vertical"}
+
         AddLabel(subhead, "store_info", "KspTooi服务器 - 商店", "subheader_caption_label")
 
         -- TABBED PANE
@@ -159,6 +166,7 @@ function CreateOarcStoreTabsPane(player)
             type="tabbed-pane",
             style="tabbed_pane"}
         store_tabs.style.top_padding = 8
+
     end
 end
 
@@ -205,6 +213,7 @@ function AddOarcStoreTab(player, tab_name)
 end
 
 function SetOarcStoreTabContent(player, tab_name)
+
     if (not DoesOarcStoreExist(player)) then return end
 
     local otabs = GetOarcStoreTabsPane(player)

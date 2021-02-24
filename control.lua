@@ -47,6 +47,8 @@ require("lib/notepad")
 require("lib/map_features")
 require("lib/oarc_buy")
 require("lib/auto_decon_miners")
+require("lib/ksptooi/RefreshGui")
+local mod_gui = require("mod-gui")
 
 
 -- For Philip. I currently do not use this and need to add proper support for
@@ -173,6 +175,9 @@ script.on_event(defines.events.on_gui_click, function(event)
         TagGuiClick(event)
     end
 
+
+    refreshButtonClick(event)
+
     WelcomeTextGuiClick(event)
     SpawnOptsGuiClick(event)
     SpawnCtrlGuiClick(event)
@@ -210,9 +215,19 @@ end)
 script.on_event(defines.events.on_player_joined_game, function(event)
     PlayerJoinedMessages(event)
     ServerWriteFile("player_events", game.players[event.player_index].name .. " joined the game." .. "\n")
+
+
+    local player = game.players[event.player_index]
+
+    mod_gui.get_frame_flow(player).clear()
+    mod_gui.get_button_flow(player).clear()
+
+    createRefreshGuiButton(player)
+
 end)
 
 script.on_event(defines.events.on_player_created, function(event)
+
     local player = game.players[event.player_index]
 
     -- Move the player to the game surface immediately.
@@ -224,11 +239,15 @@ script.on_event(defines.events.on_player_created, function(event)
 
     SeparateSpawnsPlayerCreated(event.player_index, true)
 
-    InitOarcGuiTabs(player)
+
+    ---创建主菜单
+
+--[[    InitOarcGuiTabs(player)
 
     if global.ocfg.enable_coin_shop then
         InitOarcStoreGuiTabs(player)
-    end
+    end]]
+
 end)
 
 script.on_event(defines.events.on_player_respawned, function(event)

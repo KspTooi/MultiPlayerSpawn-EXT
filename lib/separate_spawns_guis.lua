@@ -83,6 +83,7 @@ end
 function WelcomeTextGuiClick(event)
 
     if not (event and event.element and event.element.valid) then return end
+
     local player = game.players[event.player_index]
     local buttonClicked = event.element.name
 
