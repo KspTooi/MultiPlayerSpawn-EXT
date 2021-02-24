@@ -16,13 +16,15 @@ WELCOME_MSG = "" -- Printed to player on join as well.
 SERVER_MSG = "这个服务器基于OARC场景进行二次开发与优化.\n 原链接:https://github.com/Oarcinae/FactorioScenarioMultiplayerSpawn"
 
 SCENARIO_INFO_MSG = "请阅读以下内容:\n"..
-"版本:1.30-B\n"..
+"版本:1.35-E\n"..
 "更新内容:\n"..
 "1:平衡性小幅修正\n"..
 "2:优化地图,减少空间占用.\n"..
 "3:修复大量BUG\n"..
 "4:商店改进\n"..
-"5:界面改进\n\n\n"..
+"5:略微修正了虫子被激光击杀时抛出武器的速度与范围\n"..
+"6:优化了出生点机制,从这个版本开始玩家重生点将会更加接近地图中心\n\n\n"..
+
 "警告:在改变/拆除其他玩家设施时须征得他人同意.\n"..
 "每位玩家将独立发展.同时科技树也将独立.\n"..
 "初始资金建议购买装备插件,用来清理虫巢赚取更多金币\n"..
@@ -197,8 +199,8 @@ CHECK_SPAWN_UNGENERATED_CHUNKS_RADIUS = 1
 -- When a player selects "near" spawn, they will be in or as close to this range as possible.
 --NEAR_MIN_DIST = 50
 --NEAR_MAX_DIST = 100
-NEAR_MIN_DIST = 15
-NEAR_MAX_DIST = 30
+NEAR_MIN_DIST = 10
+NEAR_MAX_DIST = 15
 
 -- Far Distance in chunks
 -- When a player selects "far" spawn, they will be at least this distance away.
@@ -520,4 +522,4 @@ SILO_ISLANDS_MODE = false
 ---这是重新生长的一部分，如果两个都启用，则任何不活动且没有实体的块都将 最终会随着时间的推移而被删除。请勿将其与MODS一起使用！
 -- This is part of regrowth, and if both are enabled, any chunks which aren't active and have no entities will
 -- eventually be deleted over time. DO NOT USE THIS WITH MODS!
-ENABLE_WORLD_EATER = true 
+ENABLE_WORLD_EATER = true

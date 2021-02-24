@@ -15,6 +15,8 @@ extConf.placeTextWithPlayerSpawn = {
     text3= "回家"
 }
 
+--显示版本
+extConf.displayVersion="开发版本:1.35-E"
 
 --是否允许玩家加入主团队
 extConf.enableMainTeam=false
