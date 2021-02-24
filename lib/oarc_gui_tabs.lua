@@ -34,22 +34,22 @@ OARC_GUI_TAB_CONTENT_FUNCTIONS["记事本"] = CreateNotepadGuiTab]]
 
 local GUI_TAB_ITEM = {
     {
-        itemName = "服务器信息",
+        itemName = "服务器公告",
         itemValue = "",
         itemTarget = CreateGameOptionsTab
     },
     {
-        itemName = "生成设置",
+        itemName = "我的基地",
         itemValue = "",
         itemTarget = CreateSpawnCtrlGuiTab
     },
     {
-        itemName = "玩家",
+        itemName = "玩家列表",
         itemValue = "playerList",
         itemTarget = CreatePlayerListGuiTab
     },
     {
-        itemName = "名称标签",
+        itemName = "我的标签",
         itemValue = "playerTags",
         itemTarget = CreateTagGuiTab
     },
@@ -64,7 +64,7 @@ local GUI_TAB_ITEM = {
         itemTarget = CreateSharedItemsGuiTab
     },
     {
-        itemName = "记事本",
+        itemName = "我的记事本",
         itemValue = "",
         itemTarget = CreateNotepadGuiTab
     }
