@@ -35,8 +35,11 @@ function TriggerCleanup()
 end
 
 function RegrowthForceRemoveChunksCmd(cmd_table)
+
     if (game.players[cmd_table.player_index].admin) then
+
         TriggerCleanup()
+
     end
 end
 
@@ -230,7 +233,13 @@ end
 
 -- Remove all chunks at same time to reduce impact to FPS/UPS
 function OarcRegrowthRemoveAllChunks()
+
+
+
+    SendBroadcastMsg("开始清理:")
+
     for key,c_remove in pairs(global.rg.removal_list) do
+
         local c_pos = c_remove.pos
 
         -- Confirm chunk is still expired
@@ -239,6 +248,7 @@ function OarcRegrowthRemoveAllChunks()
             -- If it is FORCE removal, then remove it regardless of pollution.
             if (c_remove.force) then
                 game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
+                --SendBroadcastMsg("移除X:"..c_pos.x.."移除Y:"..c_pos.y)
 
             -- If it is a normal timeout removal, don't do it if there is pollution in the chunk.
             elseif (game.surfaces[GAME_SURFACE_NAME].get_pollution({c_pos.x*32,c_pos.y*32}) > 0) then
@@ -247,12 +257,15 @@ function OarcRegrowthRemoveAllChunks()
             -- Else delete the chunk
             else
                 game.surfaces[GAME_SURFACE_NAME].delete_chunk(c_pos)
+                --SendBroadcastMsg("移除X:"..c_pos.x.."移除Y:"..c_pos.y)
             end
         end
 
         -- Remove entry
         global.rg.removal_list[key] = nil
     end
+
+    SendBroadcastMsg("结束清理:")
 
     -- MUST GET A NEW CHUNK ITERATOR ON DELETE CHUNK!
     global.rg.chunk_iter = nil
@@ -302,6 +315,7 @@ end
 -- Controlled by the global.rg.force_removal_flag
 -- This function may be used outside of the normal regrowth modse.
 function RegrowthForceRemovalOnTick()
+
     -- Catch force remove flag
     if (game.tick == global.rg.force_removal_flag+60) then
         SendBroadcastMsg("30秒后开始地图区块清理程序(强制)!")
@@ -311,6 +325,7 @@ function RegrowthForceRemovalOnTick()
         OarcRegrowthRemoveAllChunks()
         SendBroadcastMsg("区块已清理!")
     end
+
 end
 
 function WorldEaterSingleStep()
