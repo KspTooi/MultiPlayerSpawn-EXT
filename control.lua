@@ -30,6 +30,9 @@ require("config")
 require("ExtendsConfig")
 
 
+--虫子增强模块
+require("lib.ksptooi.EnemyEnhance")
+
 
 -- Other soft-mod type features.
 require("lib/frontier_silo")
@@ -38,7 +41,6 @@ require("lib/game_opts")
 require("lib/player_list")
 require("lib/rocket_launch")
 require("lib/admin_commands")
-require("lib.ksptooi.ExtCommands")
 require("lib/regrowth_map")
 require("lib/shared_chests")
 require("lib/notepad")
