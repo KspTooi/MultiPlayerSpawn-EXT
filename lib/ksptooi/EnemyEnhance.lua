@@ -74,8 +74,8 @@ local function generator_gun(entity,cause)
             force = 'enemy',
             source = entity.position,
             target = position,
-            max_range = 16,
-            speed = 0.03
+            max_range = 32,
+            speed = 0.5
         }
     )
 
