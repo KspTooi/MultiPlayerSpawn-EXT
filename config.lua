@@ -16,7 +16,7 @@ WELCOME_MSG = "" -- Printed to player on join as well.
 SERVER_MSG = "这个服务器基于OARC场景进行二次开发与优化.\n 原链接:https://github.com/Oarcinae/FactorioScenarioMultiplayerSpawn"
 
 SCENARIO_INFO_MSG = "请阅读以下内容:\n"..
-"版本:1.35-P 小规模更新\n"..
+"版本:1.35-S 小规模更新\n"..
 "更新内容:\n"..
 "1:平衡性小幅修正\n"..
 "2:优化地图,减少空间占用.\n"..

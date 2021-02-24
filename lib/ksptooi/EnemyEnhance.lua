@@ -79,9 +79,9 @@ local function generator_gun(entity,cause)
         }
     )
 
-    if e.name == 'gun-turret' then
+    if gen_entity_instance.name == 'gun-turret' then
         local ammo_name= require 'maps.amap.enemy_arty'.get_ammo()
-        e.insert{name=ammo_name, count = 200}
+        gen_entity_instance.insert{name=ammo_name, count = 200}
     end
 
 
