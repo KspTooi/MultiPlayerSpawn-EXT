@@ -10,7 +10,7 @@ function validPlayer(player)
         return false
     end
 
-    if not target.valid then
+    if not player.valid then
         return false
     end
 

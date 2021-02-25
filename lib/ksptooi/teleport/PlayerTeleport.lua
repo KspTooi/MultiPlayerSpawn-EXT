@@ -5,6 +5,7 @@
 ---
 
 require("lib.ksptooi.commons.PlayerLib")
+require("lib.ksptooi.commons.PlayerCashLib")
 require("lib.ksptooi.teleport.TpRequestStorage")
 
 
@@ -22,15 +23,20 @@ function teleportToPlayer(command)
     local target = game.players[command.parameter]
 
 
-    if validPlayer(target) then
+    if not validPlayer(target) then
         player.print("玩家不存在")
         return
     end
 
+    if insertTpRequest(player,target)then
 
-    insertTpRequest(player,target)
-    player.print("传送请求已经发送至:"..target.name.." 等待对方接受")
+        player.print("传送请求已经发送至:"..target.name.." 等待对方接受")
+        target.print(player.name.."请求传送至你的位置. 输入/tpaccept 接受这个请求")
 
+        return
+    end
+
+    player.print("你已经发送过传送请求了")
 
     --player.teleport({target.position.x,target.position.y},GAME_SURFACE_NAME)
 end
@@ -43,18 +49,44 @@ function teleportAccept(command)
 
     local tpReq = getTpRequest(target)
 
+
     if tpReq == nil then
         target.print("当前没有待处理传送请求")
         return
     end
 
-    if validPlayer(tpReq.from)then
+    if not validPlayer(tpReq.from)then
         target.print("接受请求失败,玩家不可用.")
         return
     end
 
 
-    player.print("接受请求成功.")
+    local from = game.players[tpReq.from.name]
+
+    ---不可传送
+    if (from.position.x < 20 and from.position.x > -20) or (from.position.y < 20 and from.position.x > -20) then
+        target.print("接受请求成功,但对方的位置不允许进行传送.")
+        removeTpRequest(target)
+        return
+    end
+
+--[[    if (player.vehicle) then
+        player.print("先生，请先下车，然后再尝试购买...")
+        return
+    end]]
+
+    ---扣费
+    if not (removeCash(from,200))then
+        target.print("接受请求成功,但对方没有足够的现金进行此次传送.")
+        removeTpRequest(target)
+        return
+    end
+
+
+    target.print("接受请求成功.")
+    from.print("对方已接受你的传送请求.")
+    tpReq.from.teleport({target.position.x,target.position.y})
+    removeTpRequest(target)
 
 end
 

@@ -8,7 +8,6 @@
 ---from target
 local tpRequest = {
 
-
 }
 
 
@@ -18,12 +17,18 @@ function insertTpRequest(from,target)
     for i,v in pairs(tpRequest) do
 
         if v.from.name == from.name then
+
+            if(v.target == target) then
+                return false
+            end
+
             table.remove(tpRequest,i)
         end
 
     end
 
     table.insert(tpRequest,{from=from,target=target})
+    return true
 end
 
 --获取请求
@@ -38,5 +43,17 @@ function getTpRequest(targetPlayer)
     end
 
     return nil
+end
+
+--移除请求
+function removeTpRequest(targetPlayer)
+
+    for i,v in pairs(tpRequest) do
+
+        if v.target.name == targetPlayer.name then
+            table.remove(tpRequest,i)
+        end
+
+    end
 
 end

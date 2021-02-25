@@ -276,7 +276,8 @@ commands.add_command("donate-coins", "Toss a Coin to Your Witcher", function(com
     if (game.players[target] and 
         not game.players[target].ticks_to_respawn and 
         amount and 
-        player and 
+        player and
+
         player.get_main_inventory()) then
         local target_player = game.players[target]
         local amount_number = tonumber(amount)

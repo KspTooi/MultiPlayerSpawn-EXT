@@ -21,68 +21,68 @@ OARC_STORE_MAP_FEATURES =
 {
     special_chests = {
         ["logistic-chest-storage"] = {
-            initial_cost = 200,
+            initial_cost = 2600,
 --            additional_cost = 20,
 --            multiplier_cost = 2,
 --            max_cost = 200,
             -- limit = 100,
             text="输入箱子，用于存放共享物品。"},
         ["logistic-chest-requester"] = {
-            initial_cost = 200,
+            initial_cost = 2600,
 --            additional_cost = 50,
 --            multiplier_cost = 2,
 --            max_cost = 4000,
             -- limit = 100,
             text="输出箱子，用于请求共享物品。"},
         ["constant-combinator"] = {
-            initial_cost = 50, 
+            initial_cost = 2600,
             text="组合器设置，用于监视共享项目。"},
         ["accumulator"] = {
-            initial_cost = 200,
+            initial_cost = 2600,
 --            additional_cost = 50,
 --            multiplier_cost = 2,
 --            max_cost = 2000,
             -- limit = 100,
             text="共享能源系统的输入。 [color=red]只有在充电到50%时才开始共享.[/color]"},
         ["electric-energy-interface"] = {
-            initial_cost = 200,
+            initial_cost = 2600,
 --            additional_cost = 100,
 --            multiplier_cost = 2,
 --            max_cost = 4000,
             -- limit = 100,
             text="共享能源系统的输出。 [color=red]不会给其他特殊电接口供电! 特别是你不能用它来驱动特殊的块![/color]"},
         ["deconstruction-planner"] = {
-            initial_cost = 0,
+            initial_cost = 100,
             text="移除范围内最近的特殊建筑。 不退款！"},
     },
 
     special_chunks = {
         ["electric-furnace"] = {
-            initial_cost = 1000,
+            initial_cost = 5000,
 --            additional_cost = 1000,
 --            multiplier_cost = 2,
             -- limit = 3,
             text="在这里建一个特殊的炉块，包含4个电炉，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
         ["oil-refinery"] = {
-            initial_cost = 1000,
+            initial_cost = 5000,
 --            additional_cost = 1000,
 --            multiplier_cost = 2,
             -- limit = 3,
             text="在这里建造一个特殊的炼油厂。 包含2个炼油厂和一些化工厂，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
         ["assembling-machine-3"] = {
-            initial_cost = 1000,
+            initial_cost = 6500,
 --            additional_cost = 1000,
 --            multiplier_cost = 2,
             -- limit = 3,
             text="在这里建造一个特殊的组装机块。包含6台组装机，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
         ["centrifuge"] = {
-            initial_cost = 1000,
+            initial_cost = 5000,
 --            additional_cost = 1000,
 --            multiplier_cost = 2,
             -- limit = 1,
             text="在这里建造一个特殊的离心机块。 包含1个离心机，以非常高的速度运行。 [color=red]需要来自共享存储的能量。 插件没有效果！[/color]"},
         ["rocket-silo"] = {
-            initial_cost = 1000,
+            initial_cost = 8000,
 --            additional_cost = 0,
 --            multiplier_cost = 2,
 --            max_cost = 10000,
@@ -100,12 +100,12 @@ OARC_STORE_MAP_FEATURES =
 
     special_buttons = {
         ["assembling-machine-1"] = {
-            initial_cost = 20,
-            text="传送回家。"},
-        ["offshore-pump"] = {
-            initial_cost = 150,
+            initial_cost = 350,
+            text="传送回家。"}
+--[[        ["offshore-pump"] = {
+            initial_cost = 5000,
             text="把最近的空木箱变成水!"
-        }
+        }]]
     },
 
     seller_buttons = {

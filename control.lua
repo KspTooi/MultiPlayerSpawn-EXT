@@ -283,10 +283,13 @@ end)
 -- Delayed events, delayed spawns, ...
 ----------------------------------------
 script.on_event(defines.events.on_tick, function(event)
+
     if global.ocfg.enable_regrowth then
         RegrowthOnTick()
         RegrowthForceRemovalOnTick()
     end
+
+    
 
     DelayedSpawnOnTick()
 
