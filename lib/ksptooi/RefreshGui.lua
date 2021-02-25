@@ -5,10 +5,10 @@
 ---
 
 local mod_gui = require("mod-gui")
+require("lib.ksptooi.servernews.ServerNewsGui")
 
 refreshButtonId = "refresh_button"
 refreshGuiId = "refresh_gui"
-
 
 
 
@@ -52,7 +52,9 @@ function refreshButtonClick(event)
             InitOarcStoreGuiTabs(player)
         end
 
+        createNewsGuiBtn(player)
         createRefreshGuiButton(player)
+
 
     end
 

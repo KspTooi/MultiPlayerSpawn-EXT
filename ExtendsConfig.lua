@@ -16,7 +16,7 @@ extConf.placeTextWithPlayerSpawn = {
 }
 
 --显示版本
-extConf.displayVersion="开发版本:1.35-P"
+extConf.displayVersion="开发版本:1.39-E"
 
 --是否允许玩家加入主团队
 extConf.enableMainTeam=false
@@ -25,6 +25,31 @@ extConf.enableMainTeam=false
 extConf.serverInfoDiscordText = "discord.gg/trnpcen"
 --QQGroup
 extConf.serverInfoQQGroupText = "QQ群:860179317"
+
+
+--服务器公告
+extConf.serverNews =
+extConf.displayVersion.." 大规模更新\n"..
+        "更新内容:\n"..
+        "* 修复一个因NPE造成的服务端内存泄露问题\n"..
+        "* 商店中的商品价格与数量进行了调整\n"..
+        "* 玩家列表中现在可以查看所有在线玩家的现金\n"..
+        "* 新增服务器公告\n"..
+        "* 增加传送功能(一次200现金) 用法: /tpa 玩家名 例: /tpa ksptooi\n\n"..
+        "* 平衡性修正 - 虫巢\n"..
+        "** 虫巢抗性加成 15%\n"..
+        "** 虫巢热能抗性加成 95%\n"..
+        "** 虫巢爆炸抗性加成 95%\n"..
+        "** 虫巢动能抗性加成 25%\n\n"..
+        "* 实际影响 - 虫巢\n"..
+        "** 所有类型的激光与火焰武器对虫巢的伤害降低 95%\n"..
+        "** 所有类型的爆炸武器对虫巢的伤害降低 95%\n"..
+        "** 所有类型的动能武器对虫巢的伤害降低 25%\n\n"..
+        "* 平衡性修正 - 虫族\n"..
+        "** 虫族热能抗性加成 37.5%\n\n"..
+        "* 实际影响 - 虫族\n"..
+        "** 所有类型的激光武器对虫巢的伤害降低 37.5%\n"..
+        " \n\n\n"
 
 
 

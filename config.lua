@@ -16,14 +16,7 @@ WELCOME_MSG = "" -- Printed to player on join as well.
 SERVER_MSG = "这个服务器基于OARC场景进行二次开发与优化.\n 原链接:https://github.com/Oarcinae/FactorioScenarioMultiplayerSpawn"
 
 SCENARIO_INFO_MSG = "请阅读以下内容:\n"..
-"版本:1.35-S 小规模更新\n"..
-"更新内容:\n"..
-"1:平衡性小幅修正\n"..
-"2:优化地图,减少空间占用.\n"..
-"3:修复大量BUG\n"..
-"4:商店改进\n"..
-"5:略微修正了虫子被激光击杀时抛出武器的速度与范围\n"..
-"6:优化了出生点机制,从这个版本开始玩家重生点将会更加接近地图中心\n\n\n"..
+"请先点击左上角按钮初始化菜单,并查看服务器公告与信息\n\n\n"..
 
 "警告:在改变/拆除其他玩家设施时须征得他人同意.\n"..
 "每位玩家将独立发展.同时科技树也将独立.\n"..

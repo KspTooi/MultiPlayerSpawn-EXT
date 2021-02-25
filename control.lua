@@ -33,6 +33,9 @@ require("ExtendsConfig")
 --虫子增强模块
 require("lib.ksptooi.EnemyEnhance")
 
+--虫巢伤害抗性
+require("lib.ksptooi.UnitSpawnerDfenseAdjustment")
+
 --TP模块
 require("lib.ksptooi.teleport.PlayerTeleport")
 
@@ -49,6 +52,7 @@ require("lib/notepad")
 require("lib/map_features")
 require("lib/oarc_buy")
 require("lib/auto_decon_miners")
+require("lib.ksptooi.servernews.ServerNewsGui")
 require("lib/ksptooi/RefreshGui")
 local mod_gui = require("mod-gui")
 
@@ -179,6 +183,8 @@ script.on_event(defines.events.on_gui_click, function(event)
 
 
     refreshButtonClick(event)
+    newsGuiBtnClick(event)
+    newsGuiConfirmBtnClick(event)
 
     WelcomeTextGuiClick(event)
     SpawnOptsGuiClick(event)
@@ -289,7 +295,7 @@ script.on_event(defines.events.on_tick, function(event)
         RegrowthForceRemovalOnTick()
     end
 
-    
+
 
     DelayedSpawnOnTick()
 
