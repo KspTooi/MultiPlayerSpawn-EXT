@@ -6,7 +6,15 @@
 
 
 function getCash(player)
-    return player.get_main_inventory().get_item_count("coin")
+
+    local cashQuantity = player.get_main_inventory().get_item_count("coin")
+
+    if cashQuantity == nil then
+        return 0
+    end
+
+    return cashQuantity
+
 end
 
 
