@@ -33,6 +33,8 @@ require("ExtendsConfig")
 --虫子增强模块
 require("lib.ksptooi.EnemyEnhance")
 
+--TP模块
+require("lib.ksptooi.teleport.PlayerTeleport")
 
 -- Other soft-mod type features.
 require("lib/frontier_silo")
