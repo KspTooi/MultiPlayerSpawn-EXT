@@ -154,7 +154,7 @@ function formattime_hours_mins(ticks)
   local minutes = math.floor((seconds)/60)
   local hours   = math.floor((minutes)/60)
   local minutes = math.floor(minutes - 60*hours)
-  return string.format("%dh:%02dm", hours, minutes)
+  return string.format("%d小时:%02d分", hours, minutes)
 end
 
 -- Simple math clamp

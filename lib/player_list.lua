@@ -1,6 +1,8 @@
 -- oarc_player_list.lua
 -- Mar 2019
 
+
+require("lib.ksptooi.commons.PlayerCashLib")
 --------------------------------------------------------------------------------
 -- Player List GUI - My own version
 --------------------------------------------------------------------------------
@@ -12,13 +14,17 @@ function CreatePlayerListGuiTab(tab_container, player)
     scrollFrame.horizontal_scroll_policy = "never"
 
     AddLabel(scrollFrame, "online_title_msg", "在线玩家:", my_label_header_style)
+
     for _,player in pairs(game.connected_players) do
-        local caption_str = player.name.." ["..player.force.name.."]".." ("..formattime_hours_mins(player.online_time)..")"
+
+        local caption_str = player.name.." ["..player.force.name.."]".." ("..formattime_hours_mins(player.online_time)..") - 持有现金:"..getCash(player)
+
         if (player.admin) then
             AddLabel(scrollFrame, player.name.."_plist", caption_str, my_player_list_admin_style)
         else
             AddLabel(scrollFrame, player.name.."_plist", caption_str, my_player_list_style)
         end
+
     end
 
     -- List offline players
