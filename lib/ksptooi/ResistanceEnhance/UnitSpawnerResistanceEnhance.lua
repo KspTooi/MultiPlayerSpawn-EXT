@@ -9,15 +9,14 @@ _LIFECYCLE = _STAGE.control
 local event = require 'utils.event'
 
 ---对虫巢的抗性调整
-
-
 local onEntityDamage = function(event)
 
-    --死亡实体
+    --受伤实体
     local entity = event.entity
 
     --原因
     local cause = event.cause
+
 
     --实体校验
     if not (entity and entity.valid) then
@@ -27,7 +26,7 @@ local onEntityDamage = function(event)
     --原因校验
     if not cause then return end
 
-    --如果阵营不为enemy则return
+    --阵营校验
     if not entity.force.index == game.forces.enemy.index then
         return
     end
@@ -37,15 +36,21 @@ local onEntityDamage = function(event)
         return
     end
 
+    game.print("伤害类型:"..event.damage_type.name)
 
     --对激光的抗性
     if event.damage_type.name == "laser" then
 
         --降低95%伤害
-        entity.health = entity.health + (event.final_damage_amount * (1-0.05))
+        entity.health = entity.health + (event.final_damage_amount * 0.95)
 
         return
     end
+
+
+
+    --对爆炸的抗性
+
 
 
 

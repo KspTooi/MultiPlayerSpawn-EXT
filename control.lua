@@ -33,8 +33,8 @@ require("ExtendsConfig")
 --虫子增强模块
 require("lib.ksptooi.EnemyEnhance")
 
---虫巢伤害抗性
-require("lib.ksptooi.UnitSpawnerDfenseAdjustment")
+--抗性增强模块
+require("lib.ksptooi.ResistanceEnhance.UnitSpawnerResistanceEnhance")
 
 --TP模块
 require("lib.ksptooi.teleport.PlayerTeleport")
