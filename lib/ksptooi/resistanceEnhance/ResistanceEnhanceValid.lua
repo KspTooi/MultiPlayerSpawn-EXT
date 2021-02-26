@@ -4,7 +4,7 @@
 --- DateTime: 2021/2/26 13:53
 ---
 
---校验
+--校验 实体 原因与阵营
 function validForEntityAndCause(event)
 
     local entity = event.entity
@@ -16,6 +16,15 @@ function validForEntityAndCause(event)
         return false
     end
 
+    if cause == nil then
+        return false
+    end
 
+    if not entity.force.index == game.forces.enemy.index then
+        return false
+    end
+
+    return true
 
 end
+

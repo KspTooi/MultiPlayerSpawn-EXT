@@ -7,6 +7,7 @@
 require 'utils.data_stages'
 _LIFECYCLE = _STAGE.control
 local event = require 'utils.event'
+require 'lib.ksptooi.'
 
 ---对虫巢的抗性调整
 local onEntityDamage = function(event)
@@ -16,6 +17,7 @@ local onEntityDamage = function(event)
 
     --原因
     local cause = event.cause
+
 
 
     --实体校验
