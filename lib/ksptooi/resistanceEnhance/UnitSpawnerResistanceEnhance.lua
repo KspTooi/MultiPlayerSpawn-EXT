@@ -46,7 +46,7 @@ local onEntityDamage = function(event)
         correctionDamage = correctionForPercentage(damage,37.5)
     end
 
-    --所有类型的炮塔与无人机对虫巢的伤害降低95%(增加95%抗性)
+--[[    --所有类型的炮塔与无人机对虫巢的伤害降低95%(增加95%抗性)
     if isTurret(cause) or isDrone(cause) then
         correctionDamage = correctionForPercentage(damage,95)
     end
@@ -59,8 +59,7 @@ local onEntityDamage = function(event)
     --虫巢激光抗性加成98%
     if isLaserDamage(event.damage_type) then
         correctionDamage = correctionForPercentage(damage,98)
-    end
-
+    end]]
 
 
 
