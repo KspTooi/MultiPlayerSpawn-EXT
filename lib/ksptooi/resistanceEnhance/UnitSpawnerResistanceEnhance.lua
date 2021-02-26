@@ -7,7 +7,9 @@
 require 'utils.data_stages'
 _LIFECYCLE = _STAGE.control
 local event = require 'utils.event'
-require 'lib.ksptooi.'
+require 'lib.ksptooi.resistanceEnhance.ResistanceEnhanceValid'
+require 'lib.ksptooi.resistanceEnhance.ResistanceEnhanceCalculator'
+
 
 ---对虫巢的抗性调整
 local onEntityDamage = function(event)
@@ -18,36 +20,62 @@ local onEntityDamage = function(event)
     --原因
     local cause = event.cause
 
+    --造成的伤害
+    local damage = event.final_damage_amount
 
-
-    --实体校验
-    if not (entity and entity.valid) then
+    if validForEntityAndCause(event) ~= true then
         return
     end
 
-    --原因校验
-    if not cause then return end
-
-    --阵营校验
-    if not entity.force.index == game.forces.enemy.index then
+    if entity.health < 10 then
         return
     end
 
+    --game.print("伤害类型:"..event.damage_type.name)
+    --game.print("使用物体:"..event.cause.name)
+    --game.print("激光伤害:"..tostring(isLaserDamage(event.damage_type)))
+    --game.print("激光塔:"..tostring(isLaserTurret(cause)))
 
-    if entity.health < 30 then
-        return
+
+    --伤害修正值
+    local correctionDamage = 0
+
+
+    --提高虫巢37.5%抗性(修正百分比)
+    if isUnitSpawner(entity) then
+        correctionDamage = correctionForPercentage(damage,37.5)
     end
 
-    game.print("伤害类型:"..event.damage_type.name)
+    --所有类型的炮塔与无人机对虫巢的伤害降低95%(增加95%抗性)
+    if isTurret(cause) or isDrone(cause) then
+        correctionDamage = correctionForPercentage(damage,95)
+    end
 
-    --对激光的抗性
+    --蜘蛛对虫巢的伤害降低95%
+    if isSpidertron(cause) then
+        correctionDamage = correctionForPercentage(damage,95)
+    end
+
+    --虫巢激光抗性加成98%
+    if isLaserDamage(event.damage_type) then
+        correctionDamage = correctionForPercentage(damage,98)
+    end
+
+
+
+
+    --进行抗性补偿修正
+    entity.health = entity.health + correctionDamage
+    --game.print("抗性修正值:"..correctionDamage)
+
+--[[    --对激光的抗性
     if event.damage_type.name == "laser" then
 
         --降低95%伤害
         entity.health = entity.health + (event.final_damage_amount * 0.95)
 
         return
-    end
+    end]]
 
 
 
@@ -56,8 +84,8 @@ local onEntityDamage = function(event)
 
 
 
-    game.print("血量"..entity.health)
-    game.print("最终血量"..event.final_health)
+--[[    game.print("血量"..entity.health)
+    game.print("最终血量"..event.final_health)]]
 
 --[[    entity.health = entity.health + 0.5
     log("HEATH:"..entity.health)]]
