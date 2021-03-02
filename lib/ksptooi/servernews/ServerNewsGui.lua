@@ -5,13 +5,8 @@
 ---
 
 local mod_gui = require("mod-gui")
-
 require("lib/oarc_utils")
 
-
-local newsGuiId = "news_gui"
-
-local newsGuiConfirmBtnId = "news_gui_confirm_btn"
 
 
 function createNewsGuiBtn(player)
@@ -78,40 +73,15 @@ end
 
 
 ---公告按钮点击
-function newsGuiBtnClick(event)
-
-    if not (event and event.element and event.element.valid) then return end
-
-    local player = game.players[event.player_index]
-    local buttonClicked = event.element.name
-
-    if not player then
-        log("Another gui click happened with no valid player...")
-        return
-    end
+local function newsGuiBtnClick(event,player)
 
     createNewsGui(player)
-
---[[    if (buttonClicked == newsGuiBtnId) then
-        createNewsGui(player)
-    end]]
 
 end
 
 
 ---公告确认按钮点击
-function newsGuiConfirmBtnClick(event)
-
-    if not (event and event.element and event.element.valid) then return end
-
-    local player = game.players[event.player_index]
-
-    if not player then
-        log("Another gui click happened with no valid player...")
-        return
-    end
-
-
+local function newsGuiConfirmBtnClick(event,player)
 
     if (player.gui.screen[guiEnum.serverNews.interface] ~= nil) then
         player.gui.screen[guiEnum.serverNews.interface].destroy()
@@ -119,7 +89,8 @@ function newsGuiConfirmBtnClick(event)
 
 end
 
+
 --注册相关事件
-registerClickEvent(guiEnum.serverNews.btnInit,newsGuiBtnClick)
+registerClickEvent(guiEnum.serverNews.btnInit, newsGuiBtnClick)
 registerClickEvent(guiEnum.serverNews.btnConfirm,newsGuiConfirmBtnClick)
 

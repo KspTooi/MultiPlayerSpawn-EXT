@@ -47,7 +47,9 @@ end
 ---@param event "待分配的事件"
 function handlerClick(event)
 
+
     --预处理事件 start
+    local player = game.players[event.player_index]
 
     if event == nil then
         return false
@@ -61,6 +63,9 @@ function handlerClick(event)
         return false
     end
 
+    if player == nil or player.valid == false then
+        return false
+    end
     --预处理事件  end
 
 
@@ -70,7 +75,7 @@ function handlerClick(event)
         return
     end
 
-    em.elFunc(event)
+    em.elFunc(event,player)
 end
 
 
