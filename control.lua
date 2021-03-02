@@ -57,8 +57,8 @@ require("lib/oarc_buy")
 require("lib/auto_decon_miners")
 
 
---点击事件处理总线
-require("lib.ksptooi.commons.eventhandler.GuiClickEventHandler")
+--公用模块
+require("lib.ksptooi.commons.ExportModule")
 
 --服务器公告菜单
 require("lib.ksptooi.servernews.ExportModule")

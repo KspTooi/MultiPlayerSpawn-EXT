@@ -17,7 +17,7 @@ function initExtMenuBtn(player)
     end
 
     btnFlow.add({
-        name = guiEnum.extMenuEnum.extMenuBtn
+        name = guiEnum.extMenu.btnInit
         ,type = "sprite-button"
         ,caption = "我的菜单(EXT)"
         ,style=modGui.button_style

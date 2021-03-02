@@ -15,9 +15,9 @@ require("lib.ksptooi.menu.ExtraMenu")
 
 function createRefreshGuiButton(player)
 
-    if (mod_gui.get_button_flow(player)[guiEnum.refresh.initBtn] == nil) then
+    if (mod_gui.get_button_flow(player)[guiEnum.refresh.btnInit] == nil) then
 
-        local btn = mod_gui.get_button_flow(player).add{name=guiEnum.refresh.initBtn,
+        local btn = mod_gui.get_button_flow(player).add{name=guiEnum.refresh.btnInit,
                                                       type="sprite-button",
                                                       sprite="item/engine-unit",
                                                         tooltip="载入主菜单",
@@ -40,7 +40,7 @@ function refreshButtonClick(event)
     end
 
 
-    if (buttonClicked == guiEnum.refresh.initBtn) then
+    if (buttonClicked == guiEnum.refresh.btnInit) then
 
 
         mod_gui.get_frame_flow(player).clear()
@@ -66,4 +66,4 @@ end
 
 
 --注册点击事件
-registerClickEvent(guiEnum.refresh.initBtn,refreshButtonClick)
+registerClickEvent(guiEnum.refresh.btnInit,refreshButtonClick)

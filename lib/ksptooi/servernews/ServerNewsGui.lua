@@ -5,23 +5,21 @@
 ---
 
 local mod_gui = require("mod-gui")
+
 require("lib/oarc_utils")
 
-local newsGuiBtnId = "news_button"
 
 local newsGuiId = "news_gui"
-
-local newsGuiTitleId = "news_gui_title_btn"
 
 local newsGuiConfirmBtnId = "news_gui_confirm_btn"
 
 
 function createNewsGuiBtn(player)
 
-    if mod_gui.get_button_flow(player).newsGuiBtnId == nil then
+    if mod_gui.get_button_flow(player)[guiEnum.serverNews.btnInit] == nil then
 
         local btn = mod_gui.get_button_flow(player).add({
-            name = newsGuiBtnId,
+            name = guiEnum.serverNews.btnInit,
             type = "sprite-button",
             sprite="item/blueprint-book",
             tooltip = extConf.displayVersion.." (点击查看服务器公告)",
@@ -48,7 +46,7 @@ local function createNewsGui(player)
         return false
     end
 
-    local wGui = player.gui.screen.add{name = newsGuiId,
+    local wGui = player.gui.screen.add{name = guiEnum.serverNews.interface,
                                        type = "frame",
                                        direction = "vertical",
                                        caption="服务器公告"}
@@ -69,7 +67,7 @@ local function createNewsGui(player)
     button_flow.style.horizontal_align = "right"
     button_flow.style.horizontally_stretchable = true
 
-    button_flow.add{name = newsGuiConfirmBtnId,
+    button_flow.add{name = guiEnum.serverNews.btnConfirm,
                     type = "button",
                     caption="确认",
                     style = "confirm_button"}
@@ -126,6 +124,6 @@ function newsGuiConfirmBtnClick(event)
 end
 
 --注册相关事件
-registerClickEvent("news_button",newsGuiBtnClick)
-registerClickEvent("news_gui_confirm_btn",newsGuiConfirmBtnClick)
+registerClickEvent(guiEnum.serverNews.btnInit,newsGuiBtnClick)
+registerClickEvent(guiEnum.serverNews.btnConfirm,newsGuiConfirmBtnClick)
 

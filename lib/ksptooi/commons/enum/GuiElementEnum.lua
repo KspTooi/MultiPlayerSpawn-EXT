@@ -6,17 +6,27 @@
 
 guiEnum = {}
 
+---initBtn 初始化按钮 点击这个按钮即打开主界面
+---interface 主要界面
+
+
 --refresh菜单的元素枚举
 guiEnum.refresh = {
-    initBtn = "refresh_button"
+    btnInit = "refresh_btn_init"
+}
+
+guiEnum.serverNews = {
+    btnInit = "servernews_btn_init"
+    ,btnConfirm = "servernews_btn_confirm"
+    ,interface = "servernews_interface"
 }
 
 
 
 --ext菜单的元素枚举
-guiEnum.extMenuEnum = {
-    extMenuBtn = "extMenuBtn"
-    ,extMenu = "extMenu"
+guiEnum.extMenu = {
+    btnInit = "extmenu_btn_init"
+    , interface = "extmenu_interface"
 }
 
 --ServerNews菜单的元素枚举
