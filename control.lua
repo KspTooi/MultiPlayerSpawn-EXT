@@ -29,6 +29,8 @@ require("config")
 -- Extends Configuration File
 require("ExtendsConfig")
 
+local mod_gui = require("mod-gui")
+
 
 --虫子增强模块
 --require("lib.ksptooi.EnemyEnhance")
@@ -39,8 +41,6 @@ require("lib.ksptooi.resistanceEnhance.UnitSpawnerResistanceEnhance")
 --TP模块
 require("lib.ksptooi.teleport.PlayerTeleport")
 
---Ext菜单模块
-require("lib.ksptooi.menu.ExportModule")
 
 -- Other soft-mod type features.
 require("lib/frontier_silo")
@@ -56,18 +56,17 @@ require("lib/map_features")
 require("lib/oarc_buy")
 require("lib/auto_decon_miners")
 
-
 --公用模块
 require("lib.ksptooi.commons.ExportModule")
 
 --服务器公告菜单
 require("lib.ksptooi.servernews.ExportModule")
 
---载入菜单按钮
+--Load菜单按钮
 require("lib/ksptooi/RefreshGui")
 
-
-local mod_gui = require("mod-gui")
+--Ext菜单模块
+require("lib.ksptooi.menu.ExportModule")
 
 
 -- For Philip. I currently do not use this and need to add proper support for
