@@ -113,12 +113,9 @@ function newsGuiConfirmBtnClick(event)
     end
 
 
-    if (buttonClicked == newsGuiConfirmBtnId) then
 
-        if (player.gui.screen.news_gui ~= nil) then
-            player.gui.screen.news_gui.destroy()
-        end
-
+    if (player.gui.screen[guiEnum.serverNews.interface] ~= nil) then
+        player.gui.screen[guiEnum.serverNews.interface].destroy()
     end
 
 end
