@@ -16,7 +16,7 @@ extConf.placeTextWithPlayerSpawn = {
 }
 
 --显示版本
-extConf.displayVersion="开发版本:1.39-E"
+extConf.displayVersion="开发版本:1.40-F"
 
 --是否允许玩家加入主团队
 extConf.enableMainTeam=false
