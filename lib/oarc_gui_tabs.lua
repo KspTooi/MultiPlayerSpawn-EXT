@@ -155,8 +155,9 @@ end
 function CreateOarcGuiButton(player)
     if (mod_gui.get_button_flow(player).oarc_button == nil) then
         local b = mod_gui.get_button_flow(player).add{name="oarc_button",
-                                                        caption="点此打开菜单",
+                                                        caption="我的菜单(OARC)",
                                                         type="sprite-button",
+                                                        tooltip="此项功能可能会在未来的版本中移除,选项中的功能将会逐个移入EXT菜单",
                                                         -- sprite="utility/expand_dots",
                                                         style=mod_gui.button_style}
         b.style.padding=2
@@ -200,6 +201,7 @@ end
 function ClickOarcGuiButton(event)
 
     if not (event and event.element and event.element.valid) then return end
+
     local player = game.players[event.player_index]
     local name = event.element.name
 

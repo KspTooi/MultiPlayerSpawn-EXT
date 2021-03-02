@@ -15,5 +15,20 @@ function validPlayer(player)
     end
 
     return true
+end
 
+--从事件中获取玩家实例
+function getPlayer(event)
+
+    local pl = game.players[event.player_index]
+
+    if pl == nil then
+        return nil
+    end
+
+    if pl.valid == false then
+        return nil
+    end
+
+    return pl
 end

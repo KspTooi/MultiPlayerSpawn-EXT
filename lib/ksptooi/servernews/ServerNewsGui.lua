@@ -7,22 +7,14 @@
 local mod_gui = require("mod-gui")
 require("lib/oarc_utils")
 
-newsGuiBtnId = "news_button"
-
-newsGuiId = "news_gui"
-
-newsGuiTitleId = "news_gui_title_btn"
-
-newsGuiConfirmBtnId = "news_gui_confirm_btn"
-
 
 
 function createNewsGuiBtn(player)
 
-    if mod_gui.get_button_flow(player).changeLogButtonId == nil then
+    if mod_gui.get_button_flow(player)[guiEnum.serverNews.btnInit] == nil then
 
         local btn = mod_gui.get_button_flow(player).add({
-            name = newsGuiBtnId,
+            name = guiEnum.serverNews.btnInit,
             type = "sprite-button",
             sprite="item/blueprint-book",
             tooltip = extConf.displayVersion.." (点击查看服务器公告)",
@@ -42,13 +34,14 @@ local function createNewsGui(player)
             (player.gui.screen["join_shared_spawn_wait_menu"] ~= nil) or
             (player.gui.screen["buddy_spawn_opts"] ~= nil) or
             (player.gui.screen["buddy_wait_menu"] ~= nil) or
+            (player.gui.screen["news_gui"] ~= nil) or
             (player.gui.screen["buddy_request_menu"] ~= nil) or
             (player.gui.screen["wait_for_spawn_dialog"] ~= nil)) then
         log("DisplayWelcomeTextGui called while some other dialog is already displayed!")
         return false
     end
 
-    local wGui = player.gui.screen.add{name = newsGuiId,
+    local wGui = player.gui.screen.add{name = guiEnum.serverNews.interface,
                                        type = "frame",
                                        direction = "vertical",
                                        caption="服务器公告"}
@@ -69,7 +62,7 @@ local function createNewsGui(player)
     button_flow.style.horizontal_align = "right"
     button_flow.style.horizontally_stretchable = true
 
-    button_flow.add{name = newsGuiConfirmBtnId,
+    button_flow.add{name = guiEnum.serverNews.btnConfirm,
                     type = "button",
                     caption="确认",
                     style = "confirm_button"}
@@ -80,47 +73,24 @@ end
 
 
 ---公告按钮点击
-function newsGuiBtnClick(event)
+local function newsGuiBtnClick(event,player)
 
-    if not (event and event.element and event.element.valid) then return end
-
-    local player = game.players[event.player_index]
-    local buttonClicked = event.element.name
-
-    if not player then
-        log("Another gui click happened with no valid player...")
-        return
-    end
-
-
-    if (buttonClicked == newsGuiBtnId) then
-        createNewsGui(player)
-    end
-
+    createNewsGui(player)
 
 end
 
 
 ---公告确认按钮点击
-function newsGuiConfirmBtnClick(event)
+local function newsGuiConfirmBtnClick(event,player)
 
-    if not (event and event.element and event.element.valid) then return end
-
-    local player = game.players[event.player_index]
-    local buttonClicked = event.element.name
-
-    if not player then
-        log("Another gui click happened with no valid player...")
-        return
-    end
-
-
-    if (buttonClicked == newsGuiConfirmBtnId) then
-
-        if (player.gui.screen.news_gui ~= nil) then
-            player.gui.screen.news_gui.destroy()
-        end
-
+    if (player.gui.screen[guiEnum.serverNews.interface] ~= nil) then
+        player.gui.screen[guiEnum.serverNews.interface].destroy()
     end
 
 end
+
+
+--注册相关事件
+registerClickEvent(guiEnum.serverNews.btnInit, newsGuiBtnClick)
+registerClickEvent(guiEnum.serverNews.btnConfirm,newsGuiConfirmBtnClick)
+

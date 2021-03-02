@@ -5,18 +5,19 @@
 ---
 
 local mod_gui = require("mod-gui")
-require("lib.ksptooi.servernews.ServerNewsGui")
 
-refreshButtonId = "refresh_button"
-refreshGuiId = "refresh_gui"
+require("lib.ksptooi.commons.ExportModule")
+
+require("lib.ksptooi.servernews.ServerNewsGui")
+require("lib.ksptooi.menu.ExtraMenu")
 
 
 
 function createRefreshGuiButton(player)
 
-    if (mod_gui.get_button_flow(player).refresh_button == nil) then
+    if (mod_gui.get_button_flow(player)[guiEnum.refresh.btnInit] == nil) then
 
-        local btn = mod_gui.get_button_flow(player).add{name=refreshButtonId,
+        local btn = mod_gui.get_button_flow(player).add{name=guiEnum.refresh.btnInit,
                                                       type="sprite-button",
                                                       sprite="item/engine-unit",
                                                         tooltip="载入主菜单",
@@ -39,7 +40,7 @@ function refreshButtonClick(event)
     end
 
 
-    if (buttonClicked == refreshButtonId) then
+    if (buttonClicked == guiEnum.refresh.btnInit) then
 
 
         mod_gui.get_frame_flow(player).clear()
@@ -47,6 +48,8 @@ function refreshButtonClick(event)
 
 
         InitOarcGuiTabs(player)
+
+        initExtMenuBtn(player)
 
         if global.ocfg.enable_coin_shop then
             InitOarcStoreGuiTabs(player)
@@ -59,5 +62,8 @@ function refreshButtonClick(event)
     end
 
 
-
 end
+
+
+--注册点击事件
+registerClickEvent(guiEnum.refresh.btnInit,refreshButtonClick)
