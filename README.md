@@ -1,3 +1,16 @@
+
+# EXT场景简介
+一种用于多人游戏的场景,建议仅运行于长期的服务器上,此场景由KspTooi开发与维护(欢迎合作).    
+注:这个场景针对长期服务器进行优化,旨在长期运行不换周目.    
+####注:在此场景下,玩家将仅能进行有限度的合作,而每一位玩家的科技都将独立.
+
+<font color=red>此场景虽使用了部分OARC的代码,但不代表此场景的玩法与原版OARC一致!    
+</font>
+
+# 联系方式
+QQ群:860179317
+
+
 # FactorioScenarioMultiplayerSpawn
 A custom scenario for allowing separate spawn locations in multiplayer. Designed for Co-op and PvE. 
 
