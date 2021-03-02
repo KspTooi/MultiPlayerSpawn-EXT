@@ -34,7 +34,7 @@ local function createNewsGui(player)
             (player.gui.screen["join_shared_spawn_wait_menu"] ~= nil) or
             (player.gui.screen["buddy_spawn_opts"] ~= nil) or
             (player.gui.screen["buddy_wait_menu"] ~= nil) or
-            (player.gui.screen["news_gui"] ~= nil) or
+            (player.gui.screen[guiEnum.serverNews.interface] ~= nil) or
             (player.gui.screen["buddy_request_menu"] ~= nil) or
             (player.gui.screen["wait_for_spawn_dialog"] ~= nil)) then
         log("DisplayWelcomeTextGui called while some other dialog is already displayed!")
