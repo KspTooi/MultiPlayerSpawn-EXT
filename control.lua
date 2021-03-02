@@ -39,6 +39,9 @@ require("lib.ksptooi.resistanceEnhance.UnitSpawnerResistanceEnhance")
 --TP模块
 require("lib.ksptooi.teleport.PlayerTeleport")
 
+--Ext菜单模块
+require("lib.ksptooi.menu.ExportModule")
+
 -- Other soft-mod type features.
 require("lib/frontier_silo")
 require("lib/tag")
@@ -52,8 +55,18 @@ require("lib/notepad")
 require("lib/map_features")
 require("lib/oarc_buy")
 require("lib/auto_decon_miners")
-require("lib.ksptooi.servernews.ServerNewsGui")
+
+
+--点击事件处理总线
+require("lib.ksptooi.commons.eventhandler.GuiClickEventHandler")
+
+--服务器公告菜单
+require("lib.ksptooi.servernews.ExportModule")
+
+--载入菜单按钮
 require("lib/ksptooi/RefreshGui")
+
+
 local mod_gui = require("mod-gui")
 
 
@@ -182,9 +195,17 @@ script.on_event(defines.events.on_gui_click, function(event)
     end
 
 
-    refreshButtonClick(event)
-    newsGuiBtnClick(event)
-    newsGuiConfirmBtnClick(event)
+    --传递给事件总线
+    handlerClick(event)
+
+--[[    refreshButtonClick(event)]]
+
+--[[    newsGuiBtnClick(event)
+    newsGuiConfirmBtnClick(event)]]
+
+    --Ext菜单被点击
+    clickExtMenuBtn(event)
+
 
     WelcomeTextGuiClick(event)
     SpawnOptsGuiClick(event)

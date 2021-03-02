@@ -7,19 +7,18 @@
 local mod_gui = require("mod-gui")
 require("lib/oarc_utils")
 
-newsGuiBtnId = "news_button"
+local newsGuiBtnId = "news_button"
 
-newsGuiId = "news_gui"
+local newsGuiId = "news_gui"
 
-newsGuiTitleId = "news_gui_title_btn"
+local newsGuiTitleId = "news_gui_title_btn"
 
-newsGuiConfirmBtnId = "news_gui_confirm_btn"
-
+local newsGuiConfirmBtnId = "news_gui_confirm_btn"
 
 
 function createNewsGuiBtn(player)
 
-    if mod_gui.get_button_flow(player).changeLogButtonId == nil then
+    if mod_gui.get_button_flow(player).newsGuiBtnId == nil then
 
         local btn = mod_gui.get_button_flow(player).add({
             name = newsGuiBtnId,
@@ -93,11 +92,11 @@ function newsGuiBtnClick(event)
         return
     end
 
+    createNewsGui(player)
 
-    if (buttonClicked == newsGuiBtnId) then
+--[[    if (buttonClicked == newsGuiBtnId) then
         createNewsGui(player)
-    end
-
+    end]]
 
 end
 
@@ -125,3 +124,8 @@ function newsGuiConfirmBtnClick(event)
     end
 
 end
+
+--注册相关事件
+registerClickEvent("news_button",newsGuiBtnClick)
+registerClickEvent("news_gui_confirm_btn",newsGuiConfirmBtnClick)
+
