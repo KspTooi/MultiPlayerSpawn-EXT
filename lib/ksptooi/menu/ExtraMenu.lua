@@ -28,15 +28,10 @@ end
 --ext菜单按钮被点击
 function clickExtMenuBtn(event)
 
-    --校验事件有效性
-    if validGuiClickEvent(event)==false then
-        return
-    end
 
-
+    
 
     local player = getPlayer(event)
-
 
 
 

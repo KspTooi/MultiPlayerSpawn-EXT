@@ -105,7 +105,6 @@ function newsGuiConfirmBtnClick(event)
     if not (event and event.element and event.element.valid) then return end
 
     local player = game.players[event.player_index]
-    local buttonClicked = event.element.name
 
     if not player then
         log("Another gui click happened with no valid player...")

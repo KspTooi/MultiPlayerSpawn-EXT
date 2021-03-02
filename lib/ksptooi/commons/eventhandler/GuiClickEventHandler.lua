@@ -47,6 +47,23 @@ end
 ---@param event "待分配的事件"
 function handlerClick(event)
 
+    --预处理事件 start
+
+    if event == nil then
+        return false
+    end
+
+    if event.element == nil then
+        return false
+    end
+
+    if event.element.valid == false then
+        return false
+    end
+
+    --预处理事件  end
+
+
     local em = getEvent(event.element.name)
 
     if em == nil then
